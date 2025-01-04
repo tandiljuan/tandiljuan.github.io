@@ -1,0 +1,1 @@
+This repository contains the source code to build a static site with [Zola](https://github.com/getzola/zola). The resulting site is intended to serve as the user's main page. The build process is managed by [GitHub Actions](https://docs.github.com/en/actions) and the site is deployed to [GitHub Pages](https://docs.github.com/en/pages).
