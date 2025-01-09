@@ -1,4 +1,5 @@
 {%- import "macros/multilingual.html" as multilingual -%}
+{%- import "macros/navigation.html" as navigation -%}
 <!doctype html>
 <html lang="{{ multilingual::language_current() }}">
     <head>
@@ -110,11 +111,7 @@
         <div class="w">
             <header>
                 {% if config.extra.header_nav %}
-                <nav>
-                    {% for nav_item in config.extra.header_nav %}
-                    <a href="{{ nav_item.url | safe }}" {% if nav_item.new_tab %}target="_blank" rel="noreferrer noopener"{% endif %}>{{ nav_item.name }}</a>
-                    {% endfor %}
-                </nav>
+                    {{ navigation::element(list=config.extra.header_nav) }}
                 {% endif %}
                 {% block header %}{% if title %}<h1>{{ config.title }}</h1>{% endif %}{% endblock header %}
             </header>
@@ -124,11 +121,7 @@
             <footer>
                 {% block footer %}{% endblock footer %}
                 {% if config.extra.footer_nav %}
-                <nav>
-                    {% for nav_item in config.extra.footer_nav %}
-                    <a href="{{ nav_item.url | safe }}">{{ nav_item.name }}</a>
-                    {% endfor %}
-                </nav>
+                    {{ navigation::element(list=config.extra.footer_nav) }}
                 {% endif %}
             </footer>
         </div>
