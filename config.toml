@@ -32,12 +32,20 @@ highlight_code = false
 title = "Random Ramblings"
 description = "A personal blog featuring random content, primarily focused on IT (Information Technology)."
 generate_feeds = true
+taxonomies = [
+    { name = "tags" },
+    { name = "categories" },
+]
 
 ## Spanish
 [languages.es]
 title = "Divagues Diversos"
 description = "Un blog personal con contenido aleatorio, principalmente enfocado en IT (Tecnologías de la Información)."
 generate_feeds = true
+taxonomies = [
+    { name = "tags" },
+    { name = "categories" },
+]
 
 [extra]
 # Put all your custom variables here
