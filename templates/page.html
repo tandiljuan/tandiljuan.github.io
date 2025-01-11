@@ -37,15 +37,22 @@ Table of contents
 
 {% block footer_head %}
 {{ super() -}}
+{%- set path_lang = [] -%}
+{%- set is_extra_language = multilingual::is_extra_language() | int -%}
+{%- if is_extra_language -%}
+    {%- set path_lang = path_lang | concat(with=[lang]) -%}
+{%- endif -%}
 <p class="taxonomies">
 {% if page.taxonomies.tags %}
 {% for tag in page.taxonomies.tags %}
-<a href="/tags/{{ tag | slugify }}">#{{ tag }}</a>
+{% set path = path_lang | concat(with=["tags", tag | slugify]) | join(sep="/") -%}
+<a href="{{ get_url(path=path) | safe }}">#{{ tag }}</a>
 {% endfor %}
 {% endif %}
 {% if page.taxonomies.categories %}
 {% for category in page.taxonomies.categories %}
-<a href="/categories/{{ category | slugify }}">+{{ category }}</a>
+{% set path = path_lang | concat(with=["categories", category | slugify]) | join(sep="/") -%}
+<a href="{{ get_url(path=path) | safe }}">+{{ category }}</a>
 {% endfor %}
 {% endif %}
 </p>
