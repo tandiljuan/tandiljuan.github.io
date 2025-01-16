@@ -98,7 +98,8 @@
         {% endblock metatags %}
         {% if config.generate_feed %}
         {% block feed %}
-        <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
+        {% set href = get_url(path="atom.xml", trailing_slash=false, lang=multilingual::language_current()) -%}
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ href | safe }}">
         {% endblock feed %}
         {% endif %}
         {% block css %}
