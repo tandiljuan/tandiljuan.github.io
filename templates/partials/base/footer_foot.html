@@ -1,0 +1,8 @@
+{% set data = load_data(path="config.toml") -%}
+<hr/>
+<p class="foot-note">
+Made with {{ ':heart:' | markdown(inline=true) }}{% if data.author %} by {{ data.author }}{% endif %}
+&ndash;
+Built with {{ '[Zola](https://www.getzola.org/)' | markdown(inline=true) | safe }}
+and {{ '[no-style-please](https://www.getzola.org/themes/no-style-please/)' | markdown(inline=true) | safe }}
+</p>
