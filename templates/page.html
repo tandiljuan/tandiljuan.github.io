@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/multilingual.html" as multilingual %}
 
 {% block header %}
 <p><a href="..">..</a>/{{ page.slug }}</p>
@@ -28,7 +29,8 @@ Table of contents
 </ul>
 {% endif %}
 
-{{ page.content | safe }}
+{% set content = multilingual::load_content() -%}
+{{ content | safe }}
 {% endblock content %}
 
 {% block footer_head %}

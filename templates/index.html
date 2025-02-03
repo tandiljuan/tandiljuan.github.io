@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+{% import "macros/multilingual.html" as multilingual %}
 
 {% block content %}
-{{ section.content | safe }}
+{% set content = multilingual::load_content() -%}
+{{ content | safe }}
 
 {% if config.extra.list_pages %}
 {% if paginator %}
