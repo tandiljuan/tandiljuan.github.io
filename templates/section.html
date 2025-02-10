@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% import "macros/multilingual.html" as multilingual %}
+{% import "macros/variable.html" as variable %}
 
 {% block header %}
 <p><a href="{{ section.path }}..">..</a>{{ section.path }}</p>
@@ -9,6 +10,7 @@
 
 {% block content %}
 {% set content = multilingual::load_content() -%}
+{% set content = variable::all_replace(text=content) -%}
 {{ content | safe }}
 {% if paginator %}
 {% set pages = paginator.pages %}
