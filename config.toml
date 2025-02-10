@@ -39,3 +39,6 @@ description = "Un blog personal con contenido aleatorio, principalmente enfocado
 
 [extra]
 # Put all your custom variables here
+
+# Set default language for multilingual site
+default_language = "en"
