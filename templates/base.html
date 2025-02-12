@@ -105,13 +105,14 @@
         {% endif %}
         {% block css %}
         <link rel="stylesheet" href="{{ get_url(path='style.css', trailing_slash=false) | safe }}"/>
+        {% include "partials/base/src_css.html" ignore missing -%}
         {% endblock css %}
-        {% block head -%}{% endblock head -%}
+        {% block head -%}{% include "partials/base/head.html" ignore missing -%}{% endblock head -%}
     </head>
     <body theme="auto">
         <div class="w">
             <header>
-                {% block header_head -%}{% endblock header_head -%}
+                {% block header_head -%}{% include "partials/base/header_head.html" ignore missing -%}{% endblock header_head -%}
                 {% block header_menu -%}
                     {% if config.extra.header_nav -%}
                         {{ navigation::element(list=config.extra.header_nav) }}
@@ -120,21 +121,21 @@
                 {% block header -%}
                     {% if title -%}<h1>{{ config.title }}</h1>{% endif -%}
                 {% endblock header -%}
-                {% block header_foot -%}{% endblock header_foot -%}
+                {% block header_foot -%}{% include "partials/base/header_foot.html" ignore missing -%}{% endblock header_foot -%}
             </header>
             <main class="page-content" aria-label="Content">
                 {% block content -%}{% endblock content -%}
             </main>
             <footer>
-                {% block footer_head -%}{% endblock footer_head -%}
+                {% block footer_head -%}{% include "partials/base/footer_head.html" ignore missing -%}{% endblock footer_head -%}
                 {% block footer_menu -%}
                     {% if config.extra.footer_nav -%}
                         {{ navigation::element(list=config.extra.footer_nav) }}
                     {% endif -%}
                 {% endblock footer_menu -%}
-                {% block footer_foot -%}{% endblock footer_foot -%}
+                {% block footer_foot -%}{% include "partials/base/footer_foot.html" ignore missing -%}{% endblock footer_foot -%}
             </footer>
         </div>
-        {% block js -%}{% endblock js -%}
+        {% block js -%}{% include "partials/base/src_js.html" ignore missing -%}{% endblock js -%}
     </body>
 </html>
