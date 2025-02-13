@@ -27,6 +27,8 @@
         {% set author = section.extra.author %}
         {% elif config.extra.author %}
         {% set author = config.extra.author %}
+        {% elif config.author %}
+        {% set author = config.author %}
         {% endif %}
 
         {% if page.description %}
