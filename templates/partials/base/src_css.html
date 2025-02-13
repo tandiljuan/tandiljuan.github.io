@@ -1,0 +1,5 @@
+{# ----------------------------- Custom Files ------------------------------ -#}
+{% set custom_css = load_data(path='sass/src/css/main.scss', required=false) -%}
+{% if custom_css -%}
+<link rel="stylesheet" href="{{ get_url(path='src/css/main.css') }}" />
+{% endif -%}
