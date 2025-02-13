@@ -62,3 +62,8 @@ Table of contents
 {% endif %}
 </p>
 {% endblock footer_head %}
+
+{% block js %}
+{{ super() -}}
+{% include "partials/page/src_js.html" ignore missing -%}
+{% endblock js %}
