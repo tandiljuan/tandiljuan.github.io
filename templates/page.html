@@ -2,6 +2,11 @@
 {% import "macros/multilingual.html" as multilingual %}
 {% import "macros/variable.html" as variable %}
 
+{% block css %}
+{{ super() -}}
+{% include "partials/page/src_css.html" ignore missing -%}
+{% endblock css %}
+
 {% block header %}
 <p><a href="..">..</a>/{{ page.slug }}</p>
 <p class="post-meta"><time datetime="{{ page.date }}">{{ page.date }}</time></p>
