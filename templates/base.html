@@ -6,13 +6,20 @@
         <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
+
+        {% set title = [] %}
+
         {% if page.title %}
-        {% set title = page.title %}
+            {% set title = title | concat(with=[page.title | trim]) %}
         {% elif section.title %}
-        {% set title = section.title %}
-        {% elif config.title %}
-        {% set title = config.title %}
+            {% set title = title | concat(with=[section.title | trim]) %}
         {% endif %}
+
+        {% if config.title %}
+            {% set title = title | concat(with=[config.title | trim]) %}
+        {% endif %}
+
+        {% set title = title | join(sep=" | ") %}
 
         {% if page.extra.author %}
         {% set author = page.extra.author %}
