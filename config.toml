@@ -5,6 +5,9 @@ base_url = "https://example.com"
 title = "Random Ramblings"
 description = "A personal blog featuring random content, primarily focused on IT (Information Technology)."
 
+# Set an unused code as the default language
+default_language = "xx"
+
 # Theme name
 theme = "no-style-please"
 
