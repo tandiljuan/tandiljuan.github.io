@@ -20,7 +20,8 @@
 {% block content %}
 
 {% if page.toc and page.extra.add_toc %}
-Table of contents
+<nav class="toc">
+Table Of Contents
 <ul>
 {% for h1 in page.toc %}
     <li>
@@ -37,6 +38,7 @@ Table of contents
     </li>
 {% endfor %}
 </ul>
+</nav>
 {% endif %}
 
 {% set content = multilingual::load_content() -%}
