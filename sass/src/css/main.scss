@@ -22,6 +22,17 @@ p.not-found {
     }
 }
 
+nav.toc {
+    background: #ebebeb;
+    margin: 2em 0;
+    padding: 0.8em;
+    text-align: left;
+
+    ul {
+        margin-bottom: 0;
+    }
+}
+
 footer p.foot-note {
     font-size: 0.8em;
     margin: 0.2rem 0;
