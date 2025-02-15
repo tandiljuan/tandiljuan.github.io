@@ -81,7 +81,11 @@
         {% endif %}
 
         <link rel="canonical" href="{{ url | safe }}">
-        {% if image %}<link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path=config.extra.logo, trailing_slash=false) }}">{% endif %}
+        <link rel="icon" type="image/x-icon" href="{{ get_url(path="/icons/favicon.ico", trailing_slash=false) | safe }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path="/icons/apple-touch-icon.png", trailing_slash=false) | safe }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path="/icons/favicon-32x32.png", trailing_slash=false) | safe }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path="/icons/favicon-16x16.png", trailing_slash=false) | safe }}">
+        <link rel="manifest" href="{{ get_url(path="/icons/site.webmanifest", trailing_slash=false) | safe }}">
         <script type="application/ld+json">
             {
                 {% if description %}"description":"{{ description | safe }}",{% endif %}
