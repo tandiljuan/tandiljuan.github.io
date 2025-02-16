@@ -9,6 +9,19 @@ header h1 {
     &:after { content: attr(data-content) ']' }
 }
 
+p.not-found {
+    padding: 0.5em 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4em;
+    line-height: 1;
+
+    span.code {
+        font-size: 3em;
+        display: block;
+    }
+}
+
 footer p.foot-note {
     font-size: 0.8em;
     margin: 0.2rem 0;
