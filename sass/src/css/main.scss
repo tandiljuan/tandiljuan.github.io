@@ -2,6 +2,13 @@
   max-width: 1000px;
 }
 
+header h1 {
+    text-align: center;
+
+    &:before { content: '[' }
+    &:after { content: attr(data-content) ']' }
+}
+
 footer p.foot-note {
     font-size: 0.8em;
     margin: 0.2rem 0;
