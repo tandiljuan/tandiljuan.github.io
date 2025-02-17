@@ -2,6 +2,7 @@
 <nav>
     {% set current_lang = multilingual::language_current() -%}
     {% set current_lang_is_default = multilingual::is_default_language() | int -%}
+    {% set nav_langs = [] -%}
     {% set nav_links = [] -%}
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
     {# ## Iterate items from list in configuration file -#}
@@ -27,7 +28,14 @@
                     {% set link_url = link_url | replace(from='/' ~ current_lang ~ '/', to='/' ~ code ~ '/') -%}
                 {% endif -%}
                 {% set link_values = [code, link_url, false] -%}
-                {% set_global nav_links = nav_links | concat(with=[link_values]) -%}
+                {% set_global nav_langs = nav_langs | concat(with=[link_values]) -%}
+            {% endfor -%}
+            {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+            {# ## Sort list of language and append to navigation links -#}
+            {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+            {% set_global nav_langs = nav_langs | sort(attribute='0') -%}
+            {% for item in nav_langs -%}
+                {% set_global nav_links = nav_links | concat(with=[item]) -%}
             {% endfor -%}
         {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
         {# ## Process normal link from list -#}
