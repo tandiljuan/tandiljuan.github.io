@@ -33,6 +33,36 @@ nav.toc {
     }
 }
 
+/**
+ * Open & Close Transitions with <details>
+ *
+ * @see https://nerdy.dev/open-and-close-transitions-for-the-details-element
+ */
+details.auto-hide {
+    border: black thin solid;
+    padding: 0.4em;
+
+    @media (prefers-reduced-motion: no-preference) {
+        interpolate-size: allow-keywords;
+    }
+
+    &::details-content {
+        opacity: 0;
+        block-size: 0;
+        overflow-y: clip;
+        transition: content-visibility 1s allow-discrete, opacity 1s, block-size 1s;
+    }
+
+    &[open]::details-content {
+        opacity: 1;
+        block-size: auto;
+    }
+
+    summary {
+        cursor: pointer;
+    }
+}
+
 footer p.foot-note {
     font-size: 0.8em;
     margin: 0.2rem 0;
