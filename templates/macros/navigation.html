@@ -1,5 +1,6 @@
 {% macro element(list) -%}
 <nav>
+    {% set current_lang = multilingual::language_current() -%}
     {% set nav_links = [] -%}
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
     {# ## Iterate items from list in configuration file -#}
@@ -14,13 +15,10 @@
             {# ## Iterate through the languages in the config file -#}
             {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
             {% for code, value in config.languages -%}
-                {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
-                {# ## Skip if default or current language -#}
-                {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
-                {% if config.default_language == code or lang == code -%}
-                    {% continue -%}
-                {% endif -%}
-                {% if config.default_language == lang -%}
+                {% if config.default_language == code or current_lang == code -%}
+                    {% set code = current_lang -%}
+                    {% set link_url = false -%}
+                {% elif config.default_language == lang -%}
                     {% set path = current_path | default(value="/") -%}
                     {% set link_url = "/" ~ code ~ path -%}
                 {% else -%}
@@ -50,7 +48,11 @@
     {# ## Build list of links -#}
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
     {% for i in nav_links -%}
-        <a href="{{ get_url(path=i.1) | safe }}"{% if i.2 %} target="_blank" rel="noreferrer noopener"{% endif %}>{{ i.0 }}</a>
+        {% if false != i.1 -%}
+            <a href="{{ get_url(path=i.1) | safe }}"{% if i.2 %} target="_blank" rel="noreferrer noopener"{% endif %}>{{ i.0 }}</a>
+        {% else -%}
+            {{ i.0 }}
+        {% endif -%}
     {% endfor -%}
 </nav>
 {% endmacro element -%}
