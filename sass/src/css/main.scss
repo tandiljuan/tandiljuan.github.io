@@ -2,6 +2,22 @@
   max-width: 1000px;
 }
 
+header nav {
+    background: #ebebeb;
+    padding-top: 0.6em;
+
+    a {
+        text-decoration: none;
+        padding: 0.2em 0.4em;
+    }
+
+    span {
+        border: 0.2em solid #fff;
+        padding: 0.2em 0.2em;
+        background-color: #fff;
+    }
+}
+
 header h1 {
     text-align: center;
 
