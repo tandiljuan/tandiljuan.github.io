@@ -69,15 +69,16 @@
     {% set path_list = current_path | default(value='404') | trim_end_matches(pat="/") -%}
     {% set path_list = [path_list, path_list ~ "/" ~ current_lang] -%}
     {% for i in nav_links -%}
+        {% set name = i.0 -%}
         {% set href = i.1 | as_str | trim_end_matches(pat="/") -%}
         {% if false == i.1 or path_list is containing(href) -%}
-            <span>{{ i.0 }}</span>
+            <span>{{ name }}</span>
         {% else -%}
             {% set new_tab = "" -%}
             {% if i.2 -%}
                 {% set new_tab = 'target="_blank" rel="noreferrer noopener"' -%}
             {% endif -%}
-            <a href="{{ get_url(path=href) | safe }}" {{ new_tab | safe }}>{{ i.0 }}</a>
+            <a href="{{ get_url(path=href) | safe }}" {{ new_tab | safe }}>{{ name }}</a>
         {% endif -%}
     {% endfor -%}
 </nav>
