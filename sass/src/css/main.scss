@@ -79,6 +79,12 @@ details.auto-hide {
     }
 }
 
+p, ol, ul {
+    code {
+        padding: 0.2em 0.4em;
+    }
+}
+
 footer p.foot-note {
     font-size: 0.8em;
     margin: 0.2rem 0;
