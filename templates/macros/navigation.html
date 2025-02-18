@@ -34,7 +34,7 @@
         {# ## Process normal link from list -#}
         {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
         {% else -%}
-            {% if config.default_language == lang and not nav_item.def_lang | default(value=false) -%}
+            {% if config.default_language == lang and not nav_item.in_default_language | default(value=true) -%}
                 {% continue -%}
             {% endif -%}
             {% set link_url = nav_item.url -%}
