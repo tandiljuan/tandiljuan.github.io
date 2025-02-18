@@ -1,6 +1,7 @@
 {% macro element(list) -%}
 <nav>
     {% set current_lang = multilingual::language_current() -%}
+    {% set current_lang_is_default = multilingual::is_default_language() | int -%}
     {% set nav_links = [] -%}
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
     {# ## Iterate items from list in configuration file -#}
@@ -18,7 +19,7 @@
                 {% if config.default_language == code or current_lang == code -%}
                     {% set code = current_lang -%}
                     {% set link_url = false -%}
-                {% elif config.default_language == lang -%}
+                {% elif current_lang_is_default -%}
                     {% set path = current_path | default(value="/") -%}
                     {% set link_url = "/" ~ code ~ path -%}
                 {% else -%}
@@ -32,7 +33,7 @@
         {# ## Process normal link from list -#}
         {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
         {% else -%}
-            {% if config.default_language == lang and not nav_item.in_default_language | default(value=true) -%}
+            {% if current_lang_is_default and not nav_item.in_default_language | default(value=true) -%}
                 {% continue -%}
             {% endif -%}
             {% set link_url = nav_item.url -%}
