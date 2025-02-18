@@ -56,11 +56,18 @@
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
     {# ## Build list of links -#}
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+    {% set path_list = current_path | default(value='404') | trim_end_matches(pat="/") -%}
+    {% set path_list = [path_list, path_list ~ "/" ~ current_lang] -%}
     {% for i in nav_links -%}
-        {% if false != i.1 -%}
-            <a href="{{ get_url(path=i.1) | safe }}"{% if i.2 %} target="_blank" rel="noreferrer noopener"{% endif %}>{{ i.0 }}</a>
+        {% set href = i.1 | as_str | trim_end_matches(pat="/") -%}
+        {% if false == i.1 or path_list is containing(href) -%}
+            <span>{{ i.0 }}</span>
         {% else -%}
-            {{ i.0 }}
+            {% set new_tab = "" -%}
+            {% if i.2 -%}
+                {% set new_tab = 'target="_blank" rel="noreferrer noopener"' -%}
+            {% endif -%}
+            <a href="{{ get_url(path=href) | safe }}" {{ new_tab | safe }}>{{ i.0 }}</a>
         {% endif -%}
     {% endfor -%}
 </nav>
