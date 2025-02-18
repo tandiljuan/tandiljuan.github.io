@@ -65,3 +65,11 @@ header_nav = [
     { name = "!feed", url = "/atom.xml" },
     { name = "[langs]" },
 ]
+
+# Extra language configuration
+
+[extra.languages.en]
+emoji = "gb"
+
+[extra.languages.es]
+emoji = "es"
