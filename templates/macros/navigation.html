@@ -12,13 +12,12 @@
         {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
         {# ## Process the "special" name '[langs]' -#}
         {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
-        {% if "[langs]" == link_name and config.languages | length > 0 -%}
+        {% if "[langs]" == link_name and config.extra.languages | length > 0 -%}
             {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
             {# ## Iterate through the languages in the config file -#}
             {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
-            {% for code, value in config.languages -%}
-                {% if config.default_language == code or current_lang == code -%}
-                    {% set code = current_lang -%}
+            {% for code, value in config.extra.languages -%}
+                {% if current_lang == code -%}
                     {% set link_url = false -%}
                 {% elif current_lang_is_default -%}
                     {% set path = current_path | default(value="/") -%}
