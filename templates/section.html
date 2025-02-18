@@ -21,7 +21,7 @@
 <ul>
 {% for page in pages %}
     <li>
-        <a href="{{ page.permalink | safe }}">{{ page.date }} - {{ page.title }}</a>
+        <a href="{{ page.permalink | safe }}">{{ page.date | date(format="%Y-%m-%d") }} - {{ page.title }}</a>
         <br />
         {{ page.description }}
     </li>
