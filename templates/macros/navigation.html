@@ -26,6 +26,16 @@
                 {% else -%}
                     {% set link_url = current_url | regex_replace(pattern=get_url(path="/"), rep='') -%}
                     {% set link_url = link_url | replace(from='/' ~ current_lang ~ '/', to='/' ~ code ~ '/') -%}
+                    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+                    {# ## Check if the link to the page is valid -#}
+                    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+                    {% if page.relative_path -%}
+                        {% set page_data = "content/" ~ page.relative_path | replace(from='.' ~ current_lang ~ '.', to='.' ~ code ~ '.') -%}
+                        {% set page_data = load_data(path=page_data, required=false) %}
+                        {% if not page_data -%}
+                            {% set link_url = "/" ~ code -%}
+                        {% endif -%}
+                    {% endif -%}
                 {% endif -%}
                 {% set link_values = [code, link_url, false] -%}
                 {% set_global nav_langs = nav_langs | concat(with=[link_values]) -%}
