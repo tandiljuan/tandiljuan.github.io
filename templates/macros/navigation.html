@@ -36,6 +36,9 @@
                         {% endif -%}
                     {% endif -%}
                 {% endif -%}
+                {% if value.emoji -%}
+                    {% set code = ':' ~ value.emoji ~ ':' | markdown(inline=true) -%}
+                {% endif -%}
                 {% set link_values = [code, link_url, false] -%}
                 {% set_global nav_langs = nav_langs | concat(with=[link_values]) -%}
             {% endfor -%}
