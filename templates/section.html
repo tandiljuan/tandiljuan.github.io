@@ -3,7 +3,7 @@
 {% import "macros/variable.html" as variable %}
 
 {% block header %}
-<p><a href="{{ section.path }}..">..</a>{{ section.path }}</p>
+<p class="slug"><a href="{{ section.path }}..">..</a>{{ section.path }}</p>
 {% if section.title -%}
 <h1>{{ section.title }}</h1>
 {% endif %}
