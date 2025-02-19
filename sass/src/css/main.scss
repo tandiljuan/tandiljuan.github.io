@@ -85,6 +85,10 @@ p, ol, ul {
     }
 }
 
+p > img {
+    border: 0.1em solid #000;
+}
+
 footer p.foot-note {
     font-size: 0.8em;
     margin: 0.2rem 0;
