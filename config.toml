@@ -1,0 +1,66 @@
+# The URL the site will be built for
+base_url = "https://example.com"
+
+# Site title and description, used in feeds by default.
+title = "Random Ramblings"
+description = "A personal blog featuring random content, primarily focused on IT (Information Technology)."
+
+# Set an unused code as the default language
+default_language = "xx"
+
+# Theme name
+theme = "no-style-please"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# The default author for pages
+author = "Juan Manuel Lopez"
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = false
+
+# Translate emoji aliases to corresponding Unicode emoji equivalent
+render_emoji = true
+
+# Extra languages definition
+
+## English
+[languages.en]
+title = "Random Ramblings"
+description = "A personal blog featuring random content, primarily focused on IT (Information Technology)."
+generate_feeds = true
+taxonomies = [
+    { name = "tags" },
+    { name = "categories" },
+]
+
+## Spanish
+[languages.es]
+title = "Divagues Diversos"
+description = "Un blog personal con contenido aleatorio, principalmente enfocado en IT (Tecnologías de la Información)."
+generate_feeds = true
+taxonomies = [
+    { name = "tags" },
+    { name = "categories" },
+]
+
+[extra]
+# Put all your custom variables here
+
+# Set default language for multilingual site
+default_language = "en"
+
+# Header navigation links
+header_nav = [
+    { name = "~home", url = "/", def_lang=true },
+    { name = "#tags", url = "/tags" },
+    { name = "+categories", url = "/categories" },
+    { name = "!feed", url = "/atom.xml" },
+    { name = "[langs]" },
+]

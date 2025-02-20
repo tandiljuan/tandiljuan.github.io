@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% import "macros/multilingual.html" as multilingual %}
+{% import "macros/variable.html" as variable %}
+
+{% block css %}
+{{ super() -}}
+{% include "partials/page/src_css.html" ignore missing -%}
+{% endblock css %}
+
+{% block header %}
+<p><a href="..">..</a>/{{ page.slug }}</p>
+<p class="post-meta"><time datetime="{{ page.date }}">{{ page.date }}</time></p>
+<h1>{{ page.title }}</h1>
+{% endblock header %}
+
+{% block content %}
+
+{% if page.toc and page.extra.add_toc %}
+Table of contents
+<ul>
+{% for h1 in page.toc %}
+    <li>
+        <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+        {% if h1.children %}
+            <ul>
+                {% for h2 in h1.children %}
+                    <li>
+                        <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+{% set content = multilingual::load_content() -%}
+{% set content = variable::all_replace(text=content) -%}
+{{ content | safe }}
+{% endblock content %}
+
+{% block footer_head %}
+{{ super() -}}
+{%- set path_lang = [] -%}
+{%- set is_extra_language = multilingual::is_extra_language() | int -%}
+{%- if is_extra_language -%}
+    {%- set path_lang = path_lang | concat(with=[lang]) -%}
+{%- endif -%}
+<p class="taxonomies">
+{% if page.taxonomies.tags %}
+{% for tag in page.taxonomies.tags %}
+{% set path = path_lang | concat(with=["tags", tag | slugify]) | join(sep="/") -%}
+<a href="{{ get_url(path=path) | safe }}">#{{ tag }}</a>
+{% endfor %}
+{% endif %}
+{% if page.taxonomies.categories %}
+{% for category in page.taxonomies.categories %}
+{% set path = path_lang | concat(with=["categories", category | slugify]) | join(sep="/") -%}
+<a href="{{ get_url(path=path) | safe }}">+{{ category }}</a>
+{% endfor %}
+{% endif %}
+</p>
+{% endblock footer_head %}
+
+{% block js %}
+{{ super() -}}
+{% include "partials/page/src_js.html" ignore missing -%}
+{% endblock js %}

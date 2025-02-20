@@ -1,0 +1,19 @@
+footer p.foot-note {
+    font-size: 0.8em;
+    margin: 0.2rem 0;
+    text-align: center;
+
+    a.creative-commons {
+        text-decoration: none;
+
+        span {
+            text-decoration: underline;
+        }
+
+        img {
+            display: inline;
+            vertical-align: bottom;
+            width: 1.5em;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{% macro element(list) -%}
+<nav>
+    {% set nav_links = [] -%}
+    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+    {# ## Iterate items from list in configuration file -#}
+    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+    {% for nav_item in list %}
+        {% set link_name = nav_item.name -%}
+        {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+        {# ## Process the "special" name '[langs]' -#}
+        {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+        {% if "[langs]" == link_name and config.languages | length > 0 -%}
+            {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+            {# ## Iterate through the languages in the config file -#}
+            {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+            {% for code, value in config.languages -%}
+                {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+                {# ## Skip if default or current language -#}
+                {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+                {% if config.default_language == code or lang == code -%}
+                    {% continue -%}
+                {% endif -%}
+                {% if config.default_language == lang -%}
+                    {% set path = current_path | default(value="/") -%}
+                    {% set link_url = "/" ~ code ~ path -%}
+                {% else -%}
+                    {% set link_url = current_url | regex_replace(pattern=get_url(path="/"), rep='') -%}
+                    {% set link_url = link_url | replace(from='/' ~ lang ~ '/', to='/' ~ code ~ '/') -%}
+                {% endif -%}
+                {% set link_values = [code, link_url, false] -%}
+                {% set_global nav_links = nav_links | concat(with=[link_values]) -%}
+            {% endfor -%}
+        {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+        {# ## Process normal link from list -#}
+        {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+        {% else -%}
+            {% if config.default_language == lang and not nav_item.def_lang | default(value=false) -%}
+                {% continue -%}
+            {% endif -%}
+            {% set link_url = nav_item.url -%}
+            {% if config.default_language != lang and link_url is starting_with("/") -%}
+                {% set link_url = "/" ~ lang ~ link_url -%}
+            {% endif -%}
+            {% set new_tab = nav_item.new_tab | default(value=false) -%}
+            {% set link_values = [link_name, link_url, new_tab] -%}
+            {% set_global nav_links = nav_links | concat(with=[link_values]) -%}
+        {% endif -%}
+    {% endfor %}
+    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+    {# ## Build list of links -#}
+    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+    {% for i in nav_links -%}
+        <a href="{{ get_url(path=i.1) | safe }}"{% if i.2 %} target="_blank" rel="noreferrer noopener"{% endif %}>{{ i.0 }}</a>
+    {% endfor -%}
+</nav>
+{% endmacro element -%}

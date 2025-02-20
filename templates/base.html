@@ -1,0 +1,145 @@
+{%- import "macros/multilingual.html" as multilingual -%}
+{%- import "macros/navigation.html" as navigation -%}
+<!doctype html>
+<html lang="{{ multilingual::language_current() }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+
+        {% set title = [] %}
+
+        {% if page.title %}
+            {% set title = title | concat(with=[page.title | trim]) %}
+        {% elif section.title %}
+            {% set title = title | concat(with=[section.title | trim]) %}
+        {% endif %}
+
+        {% if config.title %}
+            {% set title = title | concat(with=[config.title | trim]) %}
+        {% endif %}
+
+        {% set title = title | join(sep=" | ") %}
+
+        {% if page.extra.author %}
+        {% set author = page.extra.author %}
+        {% elif section.extra.author %}
+        {% set author = section.extra.author %}
+        {% elif config.extra.author %}
+        {% set author = config.extra.author %}
+        {% elif config.author %}
+        {% set author = config.author %}
+        {% endif %}
+
+        {% if page.description %}
+        {% set description = page.description | truncate(length=150) %}
+        {% elif section.description %}
+        {% set description = section.description | truncate(length=150) %}
+        {% elif config.description %}
+        {% set description = config.description | truncate(length=150) %}
+        {% endif %}
+
+        {% if page.extra.image %}
+        {% set image = get_url(path=page.extra.image, trailing_slash=false) %}
+        {% elif section.extra.image %}
+        {% set image = get_url(path=section.extra.image, trailing_slash=false) %}
+        {% elif config.extra.logo %}
+        {% set image = get_url(path=config.extra.logo, trailing_slash=false) %}
+        {% endif %}
+
+        {% if page.permalink %}
+        {% set url = page.permalink %}
+        {% elif section.permalink %}
+        {% set url = section.permalink %}
+        {% elif config.base_url %}
+        {% set url = config.base_url %}
+        {% endif %}
+
+        {% if title %}<title>{{ title }}</title>{% endif %}
+        {% block metatags %}
+        {% if title %}<meta name="title" content="{{ title }}">{% endif %}
+        {% if author %}<meta name="author" content="{{ author }}">{% endif %}
+        {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+        <meta name="generator" content="Zola v0.19.2">
+
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url | safe }}">
+        {% if title %}<meta property="og:site_name" content="{{ config.title }}">{% endif %}
+        {% if title %}<meta property="og:title" content="{{ title }}">{% endif %}
+        {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
+        {% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
+
+        {% set twitter_card = config.extra.twitter_card | default(value=true) %}
+        {% if twitter_card != false %}
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="{{ url | safe }}">
+        {% if title %}<meta property="twitter:title" content="{{ title }}">{% endif %}
+        {% if description %}<meta property="twitter:description" content="{{ description }}">{% endif %}
+        {% if image %}<meta property="twitter:image" content="{{ image }}">{% endif %}
+        {% endif %}
+
+        <link rel="canonical" href="{{ url | safe }}">
+        <link rel="icon" type="image/x-icon" href="{{ get_url(path="/icons/favicon.ico", trailing_slash=false) | safe }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path="/icons/apple-touch-icon.png", trailing_slash=false) | safe }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path="/icons/favicon-32x32.png", trailing_slash=false) | safe }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path="/icons/favicon-16x16.png", trailing_slash=false) | safe }}">
+        <link rel="manifest" href="{{ get_url(path="/icons/site.webmanifest", trailing_slash=false) | safe }}">
+        <script type="application/ld+json">
+            {
+                {% if description %}"description":"{{ description | safe }}",{% endif %}
+                "url":"{{ url | safe }}",
+                "@type":"WebSite",
+                {% if title %}"headline":"{{ title | safe }}",{% endif %}
+                {% if title %}"name":"{{ title | safe }}",{% endif %}
+                {% if author %}"author":{
+                    "@type":"Person",
+                    "name":"{{ author | safe }}"
+                },{% endif %}
+                "@context":"https://schema.org"
+            }
+        </script>
+        {% endblock metatags %}
+        {% if config.generate_feed %}
+        {% block feed %}
+        {% set href = get_url(path="atom.xml", trailing_slash=false, lang=multilingual::language_current()) -%}
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ href | safe }}">
+        {% endblock feed %}
+        {% endif %}
+        {% block css %}
+        <link rel="stylesheet" href="{{ get_url(path='style.css', trailing_slash=false) | safe }}"/>
+        {% include "partials/base/src_css.html" ignore missing -%}
+        {% endblock css %}
+        {% block head -%}{% include "partials/base/head.html" ignore missing -%}{% endblock head -%}
+    </head>
+    <body theme="auto">
+        <div class="w">
+            <header>
+                {% block header_head -%}{% include "partials/base/header_head.html" ignore missing -%}{% endblock header_head -%}
+                {% block header_menu -%}
+                    {% if config.extra.header_nav -%}
+                        {{ navigation::element(list=config.extra.header_nav) }}
+                    {% endif -%}
+                {% endblock header_menu -%}
+                {% block header -%}
+                    {% if title -%}<h1>{{ config.title }}</h1>{% endif -%}
+                {% endblock header -%}
+                {% block header_foot -%}{% include "partials/base/header_foot.html" ignore missing -%}{% endblock header_foot -%}
+            </header>
+            <main class="page-content" aria-label="Content">
+                {% block content -%}{% endblock content -%}
+            </main>
+            <footer>
+                {% block footer_head -%}{% include "partials/base/footer_head.html" ignore missing -%}{% endblock footer_head -%}
+                {% block footer_menu -%}
+                    {% if config.extra.footer_nav -%}
+                        {{ navigation::element(list=config.extra.footer_nav) }}
+                    {% endif -%}
+                {% endblock footer_menu -%}
+                {% block footer_foot -%}{% include "partials/base/footer_foot.html" ignore missing -%}{% endblock footer_foot -%}
+            </footer>
+        </div>
+        {% block js -%}{% include "partials/base/src_js.html" ignore missing -%}{% endblock js -%}
+    </body>
+</html>

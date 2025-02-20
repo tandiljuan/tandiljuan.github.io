@@ -1,0 +1,108 @@
+{%- macro dump(key, value, link="") -%}
+    {%- if link | length -%}
+        {%- set key = "[" ~ key ~ "](" ~ link ~ ")" -%}
+        {%- set key = key | markdown(inline=true) -%}
+    {%- endif -%}
+    <span class="key">{{ key | safe }}:</span>
+    {%- if value is iterable -%}
+        <ul class="value">
+        {%- if value is object -%}
+            {%- for index, data in value -%}
+                <li>{{ debug::dump(key=index, value=data) }}</li>
+            {%- endfor -%}
+        {%- else -%}
+            {%- for i in value -%}
+                <li>{{ debug::dump(key=loop.index, value=i) }}</li>
+            {%- endfor -%}
+        {%- endif -%}
+        </ul>
+    {%- else -%}
+        <span class="value">{{ value }}</span>
+    {%- endif -%}
+{%- endmacro dump -%}
+
+{%- macro config() -%}
+    {%- if config -%}
+        {%- set link = "https://www.getzola.org/documentation/getting-started/configuration/" -%}
+        {{- debug::dump(key="config", value=config, link=link) -}}
+    {%- endif -%}
+{%- endmacro config -%}
+
+{%- macro page() -%}
+    {%- if page -%}
+        {%- set link = "https://www.getzola.org/documentation/templates/pages-sections/#page-variables" -%}
+        {{- debug::dump(key="page", value=page, link=link) -}}
+    {%- endif -%}
+{%- endmacro page -%}
+
+{%- macro section() -%}
+    {%- if section -%}
+        {%- set link = "https://www.getzola.org/documentation/templates/pages-sections/#section-variables" -%}
+        {{- debug::dump(key="section", value=section, link=link) -}}
+    {%- endif -%}
+{%- endmacro section -%}
+
+{%- macro paginator() -%}
+    {%- if paginator -%}
+        {%- set link = "https://www.getzola.org/documentation/templates/pagination/" -%}
+        {{- debug::dump(key="paginator", value=paginator, link=link) -}}
+    {%- endif -%}
+{%- endmacro paginator -%}
+
+{%- macro taxonomy() -%}
+    {%- set json = "" -%}
+    {%- if taxonomy -%}
+        {%- set key = "taxonomy" -%}
+        {%- set value = taxonomy | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if current_url -%}
+        {%- set key = "current_url" -%}
+        {%- set value = current_url | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if current_path -%}
+        {%- set key = "current_path" -%}
+        {%- set value = current_path | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if term -%}
+        {%- set key = "term" -%}
+        {%- set value = term | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if lang -%}
+        {%- set key = "lang" -%}
+        {%- set value = lang | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if json | length -%}
+        {%- set json = "{" ~ json ~ "}" -%}
+        {%- set json = load_data(literal=json, format="json") -%}
+        {%- set link = "https://www.getzola.org/documentation/templates/taxonomies/" -%}
+        {{- debug::dump(key="taxonomy", value=json, link=link) -}}
+    {%- endif -%}
+{%- endmacro taxonomy -%}
+
+{%- macro all() -%}
+    {{- debug::config() -}}
+    {{- debug::page() -}}
+    {{- debug::section() -}}
+    {{- debug::paginator() -}}
+    {{- debug::taxonomy() -}}
+{%- endmacro all -%}

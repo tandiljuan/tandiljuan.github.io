@@ -1,0 +1,59 @@
+{%- macro language_hack() -%}
+    {%- if "xx" == lang and config.extra.default_language -%}
+        {{- 1 -}}
+    {%- else -%}
+        {{- 0 -}}
+    {%- endif -%}
+{%- endmacro language_hack -%}
+
+{%- macro is_extra_language() -%}
+    {%- if config.default_language and config.default_language != lang -%}
+        {{- 1 -}}
+    {%- else -%}
+        {{- 0 -}}
+    {%- endif -%}
+{%- endmacro is_extra_language -%}
+
+{%- macro language_current() -%}
+    {%- if "xx" == lang and config.extra.default_language -%}
+        {{- config.extra.default_language -}}
+    {%- elif lang -%}
+        {{- lang -}}
+    {%- endif -%}
+{%- endmacro language_current -%}
+
+{%- macro language_default() -%}
+    {%- if "xx" == config.default_language and config.extra.default_language -%}
+        {{- config.extra.default_language -}}
+    {%- elif config.default_language -%}
+        {{- config.default_language -}}
+    {%- endif -%}
+{%- endmacro language_default -%}
+
+{%- macro load_content() -%}
+    {%- set content = "" -%}
+    {%- set content_file = "" -%}
+    {%- set language_hack = multilingual::language_hack() | int -%}
+    {%- set language_current = multilingual::language_current() -%}
+    {#- Check if it's a page or a section -#}
+    {%- if page -%}
+        {%- set content = page.content -%}
+        {%- set content_file = page.relative_path -%}
+    {%- elif section -%}
+        {%- set content = section.content -%}
+        {%- set content_file = section.relative_path -%}
+    {%- endif -%}
+    {#- Check if it's needed to apply the hack -#}
+    {%- if language_hack -%}
+        {%- set data_file = "." ~ language_current ~ ".md" -%}
+        {%- set data_file = content_file | regex_replace(pattern=".md", rep=data_file) -%}
+        {%- set data = load_data(path=data_file, required=false) -%}
+        {%- if data -%}
+            {%- set data = data | regex_replace(pattern="^---\n[\s\S\n]*---\n", rep="") -%}
+            {%- set data = data | regex_replace(pattern="^\+\+\+\n[\s\S\n]*\+\+\+\n", rep="") -%}
+            {%- set content = data | markdown(inline=true) -%}
+        {%- endif -%}
+    {%- endif -%}
+    {#- Print content -#}
+    {{- content | safe -}}
+{%- endmacro load_content -%}

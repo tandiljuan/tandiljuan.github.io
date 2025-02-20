@@ -1,0 +1,5 @@
+{# ----------------------------- Custom Files ------------------------------ -#}
+{% set custom_js = load_data(path='static/src/js/main.js', required=false) -%}
+{% if custom_js -%}
+<script src="{{ get_url(path='src/js/main.js') }}"></script>
+{% endif -%}

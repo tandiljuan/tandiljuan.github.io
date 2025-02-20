@@ -1,0 +1,118 @@
+{%- macro reg_replace(text, from, to, open='\{\{', close='\}\}') -%}
+    {%- set match = open ~ '\s*' ~ from ~ '\s*' ~ close -%}
+    {{- text | regex_replace(pattern=match, rep=to) | safe -}}
+{%- endmacro reg_replace -%}
+
+{%- macro var_replace(text, var, value)  -%}
+    {%- if value is iterable -%}
+        {%- if value is object -%}
+            {%- for index, data in value -%}
+                {%- set from = var ~ '.' ~ index -%}
+                {%- set_global text = variable::var_replace(text=text, var=from, value=data) -%}
+            {%- endfor -%}
+        {%- else -%}
+            {%- for data in value -%}
+                {%- set from = var ~ '.' ~ loop.index -%}
+                {%- set_global text = variable::var_replace(text=text, var=from, value=data) -%}
+            {%- endfor -%}
+        {%- endif -%}
+    {%- else -%}
+        {%- set data = '' -%}
+        {%- if value is string or value is number -%}
+            {%- set data = value | as_str -%}
+        {%- elif true == value -%}
+            {%- set data = 'true' -%}
+        {%- elif false == value -%}
+            {%- set data = 'false' -%}
+        {%- endif -%}
+        {%- set text = variable::reg_replace(text=text, from=var, to=data) -%}
+    {%- endif -%}
+    {{- text | safe -}}
+{%- endmacro var_replace -%}
+
+{%- macro config_replace(text) -%}
+    {%- if config -%}
+        {%- set text = variable::var_replace(text=text, var='config', value=config) -%}
+    {%- endif -%}
+    {{- text | safe -}}
+{%- endmacro config_replace -%}
+
+{%- macro page_replace(text) -%}
+    {%- if page -%}
+        {%- set text = variable::var_replace(text=text, var='page', value=page) -%}
+    {%- endif -%}
+    {{- text | safe -}}
+{%- endmacro page_replace -%}
+
+{%- macro section_replace(text) -%}
+    {%- if section -%}
+        {%- set text = variable::var_replace(text=text, var='section', value=section) -%}
+    {%- endif -%}
+    {{- text | safe -}}
+{%- endmacro section_replace -%}
+
+{%- macro paginator_replace(text) -%}
+    {%- if paginator -%}
+        {%- set text = variable::var_replace(text=text, var='paginator', value=paginator) -%}
+    {%- endif -%}
+    {{- text | safe -}}
+{%- endmacro paginator_replace -%}
+
+{%- macro taxonomy_replace(text) -%}
+    {%- set json = "" -%}
+    {%- if taxonomy -%}
+        {%- set key = "taxonomy" -%}
+        {%- set value = taxonomy | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if current_url -%}
+        {%- set key = "current_url" -%}
+        {%- set value = current_url | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if current_path -%}
+        {%- set key = "current_path" -%}
+        {%- set value = current_path | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if term -%}
+        {%- set key = "term" -%}
+        {%- set value = term | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if lang -%}
+        {%- set key = "lang" -%}
+        {%- set value = lang | json_encode() -%}
+        {%- if json | length -%}
+            {%- set json = json ~ "," -%}
+        {%- endif -%}
+        {%- set json = json ~ '"' ~ key ~ '":' ~ value -%}
+    {%- endif -%}
+    {%- if json | length -%}
+        {%- set json = "{" ~ json ~ "}" -%}
+        {%- set json = load_data(literal=json, format="json") -%}
+        {%- set text = variable::var_replace(text=text, var='taxonomy', value=json) -%}
+    {%- endif -%}
+    {{- text | safe -}}
+{%- endmacro taxonomy_replace -%}
+
+{%- macro all_replace(text) -%}
+    {%- set text = variable::config_replace(text=text) -%}
+    {%- set text = variable::page_replace(text=text) -%}
+    {%- set text = variable::section_replace(text=text) -%}
+    {%- set text = variable::paginator_replace(text=text) -%}
+    {%- set text = variable::taxonomy_replace(text=text) -%}
+    {{- text | safe -}}
+{%- endmacro all_replace -%}
