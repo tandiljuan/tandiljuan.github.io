@@ -1,0 +1,104 @@
+# This workflow has been copied and modified from the Hugo starter workflow:
+# https://github.com/actions/starter-workflows/blob/main/pages/hugo.yml
+#
+# For more information about this file, refer to the documentation page:
+# https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions
+
+name: Deploy Zola to Pages
+
+# GitHub displays the workflow run name in the list of workflow runs on your
+# repository's "Actions" tab.
+run-name: "> ${{ github.event_name }} '${{ github.ref_name }}' ${{ github.ref_type }} by @${{ github.triggering_actor }}"
+
+# Controls when the workflow will run.
+# Triggers the workflow on push event but only for the "main" branch
+on:
+  push:
+    branches: [ "main" ]
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Create a map of default settings that will apply to all jobs in the workflow
+# and provide bash as the default shell.
+defaults:
+  run:
+    shell: bash
+
+# Allow only one concurrent deployment, skipping runs queued between the run
+# in-progress and latest queued. However, do NOT cancel in-progress runs as we
+# want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+# A workflow run is made up of one or more `jobs`, which run in parallel by
+# default. To run jobs sequentially, you can define dependencies on other jobs
+# using `needs` keyword.
+jobs:
+
+  # ---------
+  # Build Job
+  build:
+
+    # Define the type of machine to run the job on
+    runs-on: ubuntu-latest
+
+    # A job contains a sequence of tasks called steps. Not all steps run
+    # actions, but all actions run as a step.
+    steps:
+
+      # https://github.com/marketplace/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      # https://github.com/marketplace/actions/configure-github-pages
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # https://github.com/marketplace/actions/docker-run-action
+      - name: Build with Zola
+        uses: addnab/docker-run-action@v3
+        with:
+          image: tandiljuan/zola:0.19.2
+          options: --volume ${{ github.workspace }}:/app
+          run: |
+            zola build \
+              --base-url "${{ steps.pages.outputs.base_url }}/" \
+              --force
+
+      # https://github.com/marketplace/actions/upload-github-pages-artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  # --------------
+  # Deployment Job
+  deploy:
+
+    # Jobs that must complete successfully before this job will run
+    needs: build
+
+    # Define the type of machine to run the job on
+    runs-on: ubuntu-latest
+
+    # Define the environment that the job references
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # A job contains a sequence of tasks called steps. Not all steps run
+    # actions, but all actions run as a step.
+    steps:
+
+      # https://github.com/marketplace/actions/deploy-github-pages-site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
