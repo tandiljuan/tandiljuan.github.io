@@ -59,6 +59,7 @@ default_language = "en"
 # Header navigation links
 header_nav = [
     { name = "~home", url = "/", def_lang=true },
+    { name = "@blog", url = "/blog" },
     { name = "#tags", url = "/tags" },
     { name = "+categories", url = "/categories" },
     { name = "!feed", url = "/atom.xml" },
