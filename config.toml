@@ -58,10 +58,18 @@ default_language = "en"
 
 # Header navigation links
 header_nav = [
-    { name = "~home", url = "/", def_lang=true },
+    { name = "~home", url = "/" },
     { name = "@blog", url = "/blog" },
     { name = "#tags", url = "/tags" },
     { name = "+categories", url = "/categories" },
-    { name = "!feed", url = "/atom.xml" },
+    { name = "!feed", url = "/atom.xml", new_tab=true },
     { name = "[langs]" },
 ]
+
+# Extra language configuration
+
+[extra.languages.en]
+emoji = "gb"
+
+[extra.languages.es]
+emoji = "es"

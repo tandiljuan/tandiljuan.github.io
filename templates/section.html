@@ -3,7 +3,7 @@
 {% import "macros/variable.html" as variable %}
 
 {% block header %}
-<p><a href="{{ section.path }}..">..</a>{{ section.path }}</p>
+<p class="slug"><a href="{{ section.path }}..">..</a>{{ section.path }}</p>
 {% if section.title -%}
 <h1>{{ section.title }}</h1>
 {% endif %}
@@ -21,7 +21,7 @@
 <ul>
 {% for page in pages %}
     <li>
-        <a href="{{ page.permalink | safe }}">{{ page.date }} - {{ page.title }}</a>
+        <a href="{{ page.permalink | safe }}">{{ page.date | date(format="%Y-%m-%d") }} - {{ page.title }}</a>
         <br />
         {{ page.description }}
     </li>

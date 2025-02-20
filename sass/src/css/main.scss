@@ -2,6 +2,26 @@
   max-width: 1000px;
 }
 
+header nav {
+    background: #ebebeb;
+    padding-top: 0.6em;
+
+    a {
+        text-decoration: none;
+        padding: 0.2em 0.4em;
+    }
+
+    span {
+        border: 0.2em solid #fff;
+        padding: 0.2em 0.2em;
+        background-color: #fff;
+    }
+}
+
+header p.slug {
+    float: left;
+}
+
 header h1 {
     text-align: center;
 
@@ -31,6 +51,46 @@ nav.toc {
     ul {
         margin-bottom: 0;
     }
+}
+
+/**
+ * Open & Close Transitions with <details>
+ *
+ * @see https://nerdy.dev/open-and-close-transitions-for-the-details-element
+ */
+details.auto-hide {
+    border: black thin solid;
+    padding: 0.4em;
+
+    @media (prefers-reduced-motion: no-preference) {
+        interpolate-size: allow-keywords;
+    }
+
+    &::details-content {
+        opacity: 0;
+        block-size: 0;
+        overflow-y: clip;
+        transition: content-visibility 1s allow-discrete, opacity 1s, block-size 1s;
+    }
+
+    &[open]::details-content {
+        opacity: 1;
+        block-size: auto;
+    }
+
+    summary {
+        cursor: pointer;
+    }
+}
+
+p, ol, ul {
+    code {
+        padding: 0.2em 0.4em;
+    }
+}
+
+p > img {
+    border: 0.1em solid #000;
 }
 
 footer p.foot-note {

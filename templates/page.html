@@ -8,9 +8,9 @@
 {% endblock css %}
 
 {% block header %}
-<p><a href="..">..</a>/{{ page.slug }}</p>
+<p class="slug"><a href="..">..</a>/{{ page.slug }}</p>
 {% if page.date -%}
-<p class="post-meta"><time datetime="{{ page.date }}">{{ page.date }}</time></p>
+<p class="post-meta"><time datetime="{{ page.date }}">{{ page.date | date(format="%Y-%m-%d %H:%M") }}</time></p>
 {% endif %}
 {% if page.title -%}
 <h1>{{ page.title }}</h1>

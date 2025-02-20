@@ -6,6 +6,14 @@
     {%- endif -%}
 {%- endmacro language_hack -%}
 
+{%- macro is_default_language() -%}
+    {%- if config.default_language and config.default_language == lang -%}
+        {{- 1 -}}
+    {%- else -%}
+        {{- 0 -}}
+    {%- endif -%}
+{%- endmacro is_extra_language -%}
+
 {%- macro is_extra_language() -%}
     {%- if config.default_language and config.default_language != lang -%}
         {{- 1 -}}
