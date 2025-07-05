@@ -37,7 +37,6 @@ description = "A personal blog featuring random content, primarily focused on IT
 generate_feeds = true
 taxonomies = [
     { name = "tags" },
-    { name = "categories" },
 ]
 
 ## Spanish
@@ -47,7 +46,6 @@ description = "Un blog personal con contenido aleatorio, principalmente enfocado
 generate_feeds = true
 taxonomies = [
     { name = "tags" },
-    { name = "categories" },
 ]
 
 [extra]
