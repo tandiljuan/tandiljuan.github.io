@@ -3,6 +3,7 @@ title = "Zola Kickoff"
 date = 2025-01-04T15:51:26-03:00
 [taxonomies]
 tags = ['Zola', 'Static Site Generator', 'Tutorial']
+series = ['Zola Step by Step']
 [extra]
 add_toc = true
 +++

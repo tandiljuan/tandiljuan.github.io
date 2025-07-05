@@ -3,6 +3,7 @@ title = "Zola Multilingual Site"
 date = 2025-01-07T14:32:08-03:00
 [taxonomies]
 tags = ['Zola', 'Static Site Generator', 'i18n', 'Templates']
+series = ['Zola Step by Step']
 [extra]
 add_toc = true
 +++

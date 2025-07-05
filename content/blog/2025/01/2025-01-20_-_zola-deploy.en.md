@@ -3,6 +3,7 @@ title = "Zola Deploy"
 date = 2025-01-20T21:43:04-03:00
 [taxonomies]
 tags = ['Zola', 'CI/CD', 'GitHub Actions', 'GitHub Pages']
+series = ['Zola Step by Step']
 [extra]
 add_toc = true
 +++
