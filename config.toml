@@ -61,7 +61,6 @@ header_nav = [
     { name = "~home", url = "/" },
     { name = "@blog", url = "/blog" },
     { name = "#tags", url = "/tags" },
-    { name = "+categories", url = "/categories" },
     { name = "!feed", url = "/atom.xml", new_tab=true },
     { name = "[langs]" },
 ]
