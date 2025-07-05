@@ -2,8 +2,8 @@
 title = "Zola Kickoff"
 date = 2025-01-04T15:51:26-03:00
 [taxonomies]
-categories = ['Blogging','Content Management','Static Site Generator','Web Development']
-tags = ['CLI Tools','Markdown','Zola']
+tags = ['Zola', 'Static Site Generator', 'Tutorial']
+series = ['Zola Step by Step']
 [extra]
 add_toc = true
 +++
@@ -19,13 +19,15 @@ add_toc = true
 
 </details>
 
-I have a bunch of documents and notes scattered throughout my file system, as well as a local [TiddlyWiki](https://tiddlywiki.com/) instance. I guess more will come, and because of this, I felt the need to start blogging. In the past, I've been procrastinating on reviewing everything and keeping only what I need or think is useful. Well, it seems that the time has come, and this post is the first step.
+I have a bunch of documents and notes scattered throughout my file system, as well as a local [TiddlyWiki](https://tiddlywiki.com/) instance. I guess more will come, and because of this, I felt the need to start blogging. In the past, I've been putting off reviewing everything and keeping only what I need or think is useful. Well, it seems that the time has come, and this post is the first step.
 
 Before anything, I need to choose how and where I'm going to store all this documentation. I know about the existence of [GitHub Pages](https://pages.github.com/), and because I'm quite used to writing [Markdown](https://commonmark.org/) files, I like the idea of generating a static site from Markdown with a tool like [Jekyll](https://github.com/jekyll/jekyll). So, after doing some research, I chose [Zola](https://github.com/getzola/zola) as the [Static Site Generator](https://jamstack.org/generators/) I'm going to use. Points for being a single binary application and for using [Tera](https://github.com/Keats/tera) as its template engine.
 
-Another thing I've been procrastinating is updating my old [Ubuntu OS](https://ubuntu.com/) (I'm using 16.04 Xenial Xerus) because... well... it's working fine, I didn't have the urge to update, and the support time has been extended. I need to start thinking seriously about this because I don't have much time until the support ends. That being said, I read Zola's [installation instructions](https://www.getzola.org/documentation/getting-started/installation/) to run the Docker image, but it didn't work for me (probably because of my old OS). So, I had to create a Docker image, which I have uploaded to [Docker Hub](https://hub.docker.com/r/tandiljuan/zola).
+Another thing I've been putting off is updating my old [Ubuntu OS](https://ubuntu.com/) (I'm using 16.04 Xenial Xerus) because... well... it's working fine, I didn't have the urge to update, and the support time has been extended. I need to start thinking seriously about this because I don't have much time until the support ends. That being said, I read Zola's [installation instructions](https://www.getzola.org/documentation/getting-started/installation/) to run the Docker image, but it didn't work for me (probably because of my old OS). So, I had to create a Docker image, which I have uploaded to [Docker Hub](https://hub.docker.com/r/tandiljuan/zola).
 
-The rest of this article provides instructions for bootstrapping a simple site built with Zola ([version 0.19.2](https://github.com/getzola/zola/pkgs/container/zola/versions)). I tried to be as deterministic as possible, ensuring that anyone can achieve the same result, regardless of the OS used. The main tools I used are [Docker](https://en.wikipedia.org/wiki/Docker_%28software%29) (an alternative could be [Podman](https://en.wikipedia.org/wiki/Podman)) and several [CLI](https://en.wikipedia.org/wiki/Command-line_interface) apps that could easily be replaced by other tools.
+This article provides instructions for bootstrapping a simple site built with Zola ([version 0.19.2](https://github.com/getzola/zola/pkgs/container/zola/versions)). I tried to be as deterministic as possible, ensuring that anyone can achieve the same result, regardless of the OS used. The main tools I used are [Docker](https://en.wikipedia.org/wiki/Docker_%28software%29) (an alternative could be [Podman](https://en.wikipedia.org/wiki/Podman)) to run Zola and several [CLI](https://en.wikipedia.org/wiki/Command-line_interface) apps that could easily be replaced by other tools.
+
+The final result, after following the instructions in all the posts in this series, should resemble something like this [Zola Demo Site](https://tandiljuan.github.io/zola-demo/). Additionally, [here](https://github.com/tandiljuan/zola-demo) is the repository containing the source code for the project.
 
 
 Set up Zola

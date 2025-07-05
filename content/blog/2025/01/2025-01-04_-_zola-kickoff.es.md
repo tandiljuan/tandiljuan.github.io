@@ -2,8 +2,8 @@
 title = "Arrancando con Zola"
 date = 2025-01-04T15:51:26-03:00
 [taxonomies]
-categories = ['Blogging','Content Management','Static Site Generator','Web Development']
-tags = ['CLI Tools','Markdown','Zola']
+tags = ['Zola', 'Static Site Generator', 'Tutorial']
+series = ['Zola Step by Step']
 [extra]
 add_toc = true
 +++
@@ -19,13 +19,15 @@ add_toc = true
 
 </details>
 
-Tengo muchos documentos y notas esparcidos por el sistema de archivos, y también tengo corriendo una instancia local de [TiddlyWiki](https://tiddlywiki.com/). Supongo que seguiré escribiendo y es por eso que sentí la necesidad de empezar a bloguear. En el pasado he estado procrastinando en revisar todo y quedarme solo con lo que necesito (o creo que es útil). Bueno, parece que ha llegado el momento... y esta publicación es el primer paso.
+Tengo muchos documentos y notas dispersos en mi sistema de archivos, además de una instancia local de [TiddlyWiki](https://tiddlywiki.com/). Seguramente seguirán apareciendo más, y por eso sentí la necesidad de empezar a bloguear. En el pasado solía posponer la revisión de todo esto, y quedarme solamente con lo que necesito o considero útil. Bueno, parece que llegó el momento, y esta publicación es el primer paso.
 
-Antes que nada, necesito elegir cómo y dónde voy a almacenar toda la documentación. Conozco la existencia de [GitHub Pages](https://pages.github.com/), y como estoy bastante acostumbrado a escribir archivos en [Markdown](https://commonmark.org/), me gusta la idea de generar un sitio estático a partir de Markdown y una herramienta como [Jekyll](https://github.com/jekyll/jekyll). Así que, después de investigar un poco, elegí [Zola](https://github.com/getzola/zola) como el [Generador de Sitios Estáticos](https://jamstack.org/generators/) que voy a usar. Puntos a favor por ser una aplicación binaria y por usar [Tera](https://github.com/Keats/tera) como su motor de plantillas.
+Antes que nada, necesito decidir cómo y dónde voy a almacenar toda esta documentación. Conozco la existencia de [GitHub Pages](https://pages.github.com/), y como estoy bastante acostumbrado a escribir archivos en [Markdown](https://commonmark.org/), me gusta la idea de generar un sitio estático a partir de Markdown con una herramienta como [Jekyll](https://github.com/jekyll/jekyll). Así que, tras investigar un poco, elegí [Zola](https://github.com/getzola/zola) como el [Generador de Sitios Estáticos](https://jamstack.org/generators/) que voy a utilizar. Puntos extra por ser una aplicación binaria y por utilizar [Tera](https://github.com/Keats/tera) como motor de plantillas.
 
-Otra cosa en la que he estado procrastinando es en actualizar mi viejo [Sistema Operativo Ubuntu](https://ubuntu.com/) (estoy usando 16.04 Xenial Xerus) porque... bueno... funciona bien, no he tenido la necesidad de actualizar y el tiempo de soporte se ha extendido. Necesito empezar a pensar seriamente en esto porque no tengo mucho tiempo hasta que termine el soporte. Dicho esto, leí las [instrucciones de instalación](https://www.getzola.org/documentation/getting-started/installation/) de Zola para ejecutar la imagen de Docker, pero no me funcionó (probablemente por mi viejo sistema operativo). Así que tuve que crear una imagen de Docker, que he subido a [Docker Hub](https://hub.docker.com/r/tandiljuan/zola).
+Otra cosa que he estado posponiendo es actualizar mi viejo [Ubuntu OS](https://ubuntu.com/) (estoy usando 16.04 Xenial Xerus) porque... bueno... funciona bien, no tenía urgencia de actualizar, y el período de soporte fue extendido. Pero debo empezar a pensar en esto seriamente, porque no queda mucho tiempo hasta que finalice el soporte. Dicho esto, leí las [instrucciones de instalación](https://www.getzola.org/documentation/getting-started/installation/) de Zola para usar su imagen de Docker, pero no funcionaron para mí (probablemente por mi viejo sistema operativo). Así que terminé creando una imagen de Docker, que subí a [Docker Hub](https://hub.docker.com/r/tandiljuan/zola).
 
-El resto de este artículo proporciona instrucciones para armar un simple sitio construido con Zola ([versión 0.19.2](https://github.com/getzola/zola/pkgs/container/zola/versions)). Intenté ser lo más determinista posible, asegurando que cualquiera pueda lograr el mismo resultado, independientemente del sistema operativo utilizado. Las principales herramientas que utilicé son [Docker](https://en.wikipedia.org/wiki/Docker_%28software%29) (una alternativa podría ser [Podman](https://en.wikipedia.org/wiki/Podman)) y varias aplicaciones [CLI](https://en.wikipedia.org/wiki/Command-line_interface) que podrían ser fácilmente reemplazadas por otras herramientas.
+Este artículo proporciona instrucciones para iniciar un sitio sencillo construido con Zola ([versión 0.19.2](https://github.com/getzola/zola/pkgs/container/zola/versions)). Intenté ser lo más determinista posible, asegurando que cualquier persona pueda lograr el mismo resultado, sin importar el sistema operativo. Las herramientas principales que usé son [Docker](https://en.wikipedia.org/wiki/Docker_%28software%29) (una alternativa podría ser [Podman](https://en.wikipedia.org/wiki/Podman)) para ejecutar Zola, y varias aplicaciones de [línea de comandos](https://en.wikipedia.org/wiki/Command-line_interface) que pueden ser reemplazadas fácilmente por otras herramientas.
+
+El resultado final, tras seguir las instrucciones de todas las publicaciones de esta serie, debería parecerse a este [Sitio Demo de Zola](https://tandiljuan.github.io/zola-demo/). Además, [aquí](https://github.com/tandiljuan/zola-demo) se encuentra el repositorio con el código fuente del proyecto.
 
 
 Configurar Zola
@@ -43,23 +45,23 @@ El siguiente alias ejecuta el servidor de Zola (modo de desarrollo) para que pod
 alias zola-serve='docker run -ti --rm -u "$(id -u):$(id -g)" -v "${PWD}:/app" -p 3131:3131 -p 1024:1024 tandiljuan/zola:0.19.2 serve --interface 0.0.0.0 --port 3131 --base-url localhost'
 ```
 
-A partir de ahora, asumiré que los alias anteriores están funcionando correctamente. Por ejemplo, si ejecutamos el comando `zola --version`, deberíamos obtener la salida `zola 0.19.2`.
+A partir de ahora asumiré que los alias funcionan correctamente. Por ejemplo, si ejecutamos el comando `zola --version`, deberíamos ver como salida `zola 0.19.2`.
 
 
 Arrancando con el Sitio
 -----------------------
 
-Lo primero que vamos a hacer, es crear el directorio donde estará el sitio y luego ubicarnos dentro de él.
+Lo primero que vamos a hacer, es crear el directorio donde estará el sitio y nos movemos dentro de él:
 
 ```bash
 mkdir zola-demo && \
 cd zola-demo
 ```
 
-Usando el comando `zola`, crea un nuevo proyecto y deja las opciones predeterminadas, las cuales podemos cambiar más tarde. En mi caso, antes de este paso, había inicializado un repositorio de [git](https://en.wikipedia.org/wiki/Git), por lo que el directorio no estaba vacío y tuve que usar la opción `--force` de Zola.
+Usando el comando `zola`, creamos un nuevo proyecto y dejamos las opciones por defecto, que luego podremos cambiar. En mi caso, ya había inicializado un repositorio de [git](https://en.wikipedia.org/wiki/Git), así que el directorio no estaba vacío y tuve que usar la opción `--force` de Zola.
 
 ```bash
-# The `--force` option isn't needed if the directory is empty.
+# La opción `--force` no es necesaria si el directorio está vacío.
 zola init --force
 ```
 
@@ -87,17 +89,17 @@ Usando el siguiente comando, que se basa en el alias definido anteriormente, ini
 zola-serve --drafts
 ```
 
-Una vez que el servidor esté en funcionamiento, abre tu navegador y ve a [`http://localhost:3131`](http://localhost:3131). En el navegador, deberías ver algo como la siguiente imagen.
+Una vez que el servidor esté corriendo, abrimos el navegador y vamos a [`http://localhost:3131`](http://localhost:3131). Allí deberíamos ver algo como lo que muestra esta imagen:
 
 {{ internal_link(name="Nuevo Sitio Zola", path="assets/images/2025-01-04/zola-kickoff_01.png") }}
 
-La imagen anterior nos muestra que Zola está funcionando correctamente. También nos indica que tenemos dos opciones: [instalar un tema](https://www.getzola.org/documentation/themes/installing-and-using-themes/) o crear un archivo [`index.html`](https://www.getzola.org/documentation/templates/overview/). Elijamos la opción más fácil e instalemos un tema.
+La imagen anterior confirma que Zola funciona correctamente. También nos indica que tenemos dos opciones: [instalar un tema](https://www.getzola.org/documentation/themes/installing-and-using-themes/) o crear un archivo [`index.html`](https://www.getzola.org/documentation/templates/overview/). Vamos por la opción más simple: instalar un tema.
 
 
 Configurar un Tema
 ------------------
 
-Voy a explicar tres opciones para instalar un tema. El tema que he elegido es [**no-style-please**](https://www.getzola.org/themes/no-style-please/), versión/hash [`30dd31fb`](https://gitlab.com/atgumx/no-style-please/-/tree/30dd31fbc558597110f373b3ef1e0c75ea350f75).
+Voy a explicar tres formas para instalar un tema. El tema que he elegido es [**no-style-please**](https://www.getzola.org/themes/no-style-please/), versión/hash [`30dd31fb`](https://gitlab.com/atgumx/no-style-please/-/tree/30dd31fbc558597110f373b3ef1e0c75ea350f75).
 
 La primera opción para instalar el tema es descargarlo como un archivo comprimido desde el servidor del repositorio.
 
@@ -191,7 +193,7 @@ Get an image from [Lorem Picsum](https://github.com/DMarby/picsum-photos).
 HEREDOC
 ```
 
-Si miramos el navegador, notarás que el sitio sigue vacío. Esto es porque el tema que seleccionamos requiere una variable _extra_ para mostrar contenido en la página principal.
+Si revisás el navegador, notarás que el sitio sigue vacío. Esto se debe a que el tema elegido requiere una variable *extra* para mostrar contenido en la página principal:
 
 ```bash
 cat << HEREDOC >> config.toml
@@ -201,12 +203,12 @@ list_pages = true
 HEREDOC
 ```
 
-¡Voilà! Ahora deberíamos ver un enlace en la página de inicio que apunta a nuestro documento. El enlace debería verse algo así como [`1999-12-31T23:59:59Z - Documento #01`](http://localhost:3131/document-01/).
+¡Voilà! Ahora deberíamos ver un enlace en la página de inicio que apunta a nuestro documento. El enlace debería verse similar a [`1999-12-31T23:59:59Z - Document #01`](http://localhost:3131/document-01/).
 
 
 Finalizando
 -----------
 
-En este punto, me siento lo suficientemente cómodo para concluir esta publicación, donde hemos iniciado un sitio con Zola.
+En este punto me siento lo suficientemente cómodo como para dar por concluida esta publicación, donde iniciamos un sitio con Zola.
 
 ¡Saludos y hasta la próxima!

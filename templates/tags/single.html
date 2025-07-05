@@ -1,22 +1,15 @@
 {% extends "base.html" %}
-{% import "macros/multilingual.html" as multilingual %}
-{% import "macros/variable.html" as variable %}
 
 {% block header %}
-<p class="slug"><a href="{{ section.path }}..">..</a>{{ section.path }}</p>
-{% if section.title -%}
-<h1>{{ section.title }}</h1>
-{% endif %}
+<p class="slug"><a href="{{ current_path }}..">..</a>/{{ term.slug }}/</p>
+<h1>{{ term.name }}</h1>
 {% endblock header %}
 
 {% block content %}
-{% set content = multilingual::load_content() -%}
-{% set content = variable::all_replace(text=content) -%}
-{{ content | safe }}
 {% if paginator %}
 {% set pages = paginator.pages %}
 {% else %}
-{% set pages = section.pages %}
+{% set pages = term.pages %}
 {% endif %}
 <ul>
 {% for page in pages %}

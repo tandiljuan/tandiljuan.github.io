@@ -2,8 +2,8 @@
 title = "Zola Deploy"
 date = 2025-01-20T21:43:04-03:00
 [taxonomies]
-categories = ['Blogging','Content Management','Static Site Generator','Web Development']
-tags = ['Continuous Delivery','Continuous Integration','GitHub','GitHub Actions','GitHub Pages','Zola']
+tags = ['Zola', 'CI/CD', 'GitHub Actions', 'GitHub Pages']
+series = ['Zola Step by Step']
 [extra]
 add_toc = true
 +++
