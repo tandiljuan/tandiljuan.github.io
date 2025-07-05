@@ -2,8 +2,7 @@
 title = "Zola Tuning"
 date = 2025-01-13T20:49:16-03:00
 [taxonomies]
-categories = ['Blogging','Content Management','Static Site Generator','Web Development']
-tags = ['Fuse.js','JavaScript','Markdown','Zola']
+tags = ['Zola', 'Static Site Generator', 'Performance', 'SEO']
 [extra]
 add_toc = true
 +++
