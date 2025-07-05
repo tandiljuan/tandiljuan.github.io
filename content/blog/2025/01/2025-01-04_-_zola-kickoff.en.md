@@ -91,7 +91,7 @@ zola-serve --drafts
 
 Once the server is up and running, open your browser and go to [`http://localhost:3131`](http://localhost:3131). In the browser, you should see something like the following image.
 
-{{ internal_link(name="Fresh Zola site", path="assets/images/2025-01-04/zola-kickoff_01.png") }}
+{{ internal_link(name="Fresh Zola site", path="assets/20250104-zola-kickoff/zola-kickoff_01.png") }}
 
 The previous image shows us that Zola is working correctly. It also tells us that we have two options: [install a theme](https://www.getzola.org/documentation/themes/installing-and-using-themes/) or create an [`index.html`](https://www.getzola.org/documentation/templates/overview/) file. Let's choose the easier option and install a theme.
 
