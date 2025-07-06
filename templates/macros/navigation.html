@@ -66,6 +66,14 @@
         {% endif -%}
     {% endfor %}
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+    {# ## Process 'drafts' link -#}
+    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
+    {% set drafts = get_section(path="drafts/_index.md", lang=current_lang) %}
+    {% if drafts.pages | length %}
+        {% set link_values = ["*drafts", "/" ~ current_lang ~ "/drafts", false] -%}
+        {% set_global nav_links = nav_links | concat(with=[link_values]) -%}
+    {% endif -%}
+    {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
     {# ## Build list of links -#}
     {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
     {% set path_list = current_path | default(value='404') | trim_end_matches(pat="/") -%}
