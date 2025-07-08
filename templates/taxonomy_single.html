@@ -11,6 +11,9 @@
 {% else %}
 {% set pages = term.pages %}
 {% endif %}
+{% if "series" == taxonomy.slug %}
+{% set pages = pages | sort(attribute="date") %}
+{% endif %}
 <ul>
 {% for page in pages %}
     <li>
