@@ -35,19 +35,19 @@ Crea y Configura el Repositorio
 
 Si aún no lo has hecho, comencemos creando el repositorio en _GitHub_. Necesitas estar logueado, luego haz clic en el enlace **Nuevo repositorio** en el menú desplegable en la parte superior de la página.
 
-{{ internal_link(name="Menú para Crear un Repositorio", path="assets/images/2025-01-20/zola-deploy_01.png") }}
+{{ internal_link(name="Menú para Crear un Repositorio", path="assets/20250120-zola-deploy/zola-deploy_01.png") }}
 
 Una vez que estés en el formulario del nuevo repositorio, completa los campos requeridos (solo el nombre es obligatorio) y haz clic en el botón _Crear repositorio_.
 
-{{ internal_link(name="Formulario para Crear un Repositorio", path="assets/images/2025-01-20/zola-deploy_02.png") }}
+{{ internal_link(name="Formulario para Crear un Repositorio", path="assets/20250120-zola-deploy/zola-deploy_02.png") }}
 
 Serás redirigido a la página del repositorio, donde encontrarás instrucciones para subir tu repositorio local a _GitHub_. A continuación, haz clic en el enlace **Configuración**, ubicado en el extremo derecho del menú de encabezado del repositorio.
 
-{{ internal_link(name="Configuraciones del Proyecto", path="assets/images/2025-01-20/zola-deploy_03.png") }}
+{{ internal_link(name="Configuraciones del Proyecto", path="assets/20250120-zola-deploy/zola-deploy_03.png") }}
 
 En la página de configuración del repositorio, ve a la sección **Pages**. Aquí, cambia la fuente de la que _GitHub Pages_ tomará el contenido y lo publicará. En lugar de la opción predeterminada "_Desplegar desde una rama_", selecciona "**GitHub Actions**".
 
-{{ internal_link(name="Configuraciones de GitHub Pages", path="assets/images/2025-01-20/zola-deploy_04.png") }}
+{{ internal_link(name="Configuraciones de GitHub Pages", path="assets/20250120-zola-deploy/zola-deploy_04.png") }}
 
 
 Flujo de Trabajo de GitHub Actions
@@ -176,7 +176,7 @@ Tan pronto como subas este archivo al repositorio en GitHub, _GitHub Actions_ co
 
 **IMPORTANTE**: El flujo de trabajo que hemos configurado se activará en cualquier evento de **push**. Sin embargo, la configuración predeterminada de _GitHub Pages_ solo permite el despliegue desde la rama **main**. Por lo tanto, a menos que cambies esta configuración, el flujo de trabajo se ejecutará correctamente en los pushes realizados sobre la rama **main** y fallará con los pushes realizados en cualquier otra rama.
 
-{{ internal_link(name="Project Actions", path="assets/images/2025-01-20/zola-deploy_05.png") }}
+{{ internal_link(name="Project Actions", path="assets/20250120-zola-deploy/zola-deploy_05.png") }}
 
 
 Ajusta el Sitio

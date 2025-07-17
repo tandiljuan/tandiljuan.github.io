@@ -366,7 +366,7 @@ ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 root@
 ```
 
 
-### Herramientas de software que estaría bueno tener
+### Herramientas de software que estaría bueno tener {#nice-to-have-software-tools}
 
 Aquí hay una lista de herramientas que me gusta tener. La instalación de todas estas herramientas aumentará el tamaño del sistema en aproximadamente 5000 kilobytes.
 

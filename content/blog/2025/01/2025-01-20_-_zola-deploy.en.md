@@ -35,19 +35,19 @@ Create and Set Up the Repository
 
 If you haven't done so already, let's start by creating the repository on _GitHub_. You need to be logged in, then click the **New repository** link from the dropdown menu at the top of the page.
 
-{{ internal_link(name="Menu to Create Repository", path="assets/images/2025-01-20/zola-deploy_01.png") }}
+{{ internal_link(name="Menu to Create Repository", path="assets/20250120-zola-deploy/zola-deploy_01.png") }}
 
 Once you're on the new repository form, fill in the required fields (only the name is mandatory) and click the _Create repository_ button.
 
-{{ internal_link(name="Form to Create Repository", path="assets/images/2025-01-20/zola-deploy_02.png") }}
+{{ internal_link(name="Form to Create Repository", path="assets/20250120-zola-deploy/zola-deploy_02.png") }}
 
 You'll be redirected to the repository page, where you'll find instructions for uploading your local repository to _GitHub_. Next, click the **Settings** link, located at the far right of the repository's header menu.
 
-{{ internal_link(name="Project Settings", path="assets/images/2025-01-20/zola-deploy_03.png") }}
+{{ internal_link(name="Project Settings", path="assets/20250120-zola-deploy/zola-deploy_03.png") }}
 
 On the repository's settings page, go to the **Pages** section. Here, change the source from which _GitHub Pages_ will take the content and publish it. Instead of the default "_Deploy from a branch_", select "**GitHub Actions**".
 
-{{ internal_link(name="GitHub Pages Settings", path="assets/images/2025-01-20/zola-deploy_04.png") }}
+{{ internal_link(name="GitHub Pages Settings", path="assets/20250120-zola-deploy/zola-deploy_04.png") }}
 
 
 GitHub Actions Workflow
@@ -176,7 +176,7 @@ As soon as you push this file to the repository on GitHub, _GitHub Actions_ will
 
 **IMPORTANT**: The workflow we've set up will be triggered on any **push** event. However, the default _GitHub Pages_ settings only allow deployment from the **main** branch. Therefore, unless you change this setting, the workflow will run for pushes made to the **main** branch and will fail for pushes made to any other branch.
 
-{{ internal_link(name="Project Actions", path="assets/images/2025-01-20/zola-deploy_05.png") }}
+{{ internal_link(name="Project Actions", path="assets/20250120-zola-deploy/zola-deploy_05.png") }}
 
 
 Tweak the Site
