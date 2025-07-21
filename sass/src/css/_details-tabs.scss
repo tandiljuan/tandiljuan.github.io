@@ -1,0 +1,50 @@
+/**
+ * Display `details/summary` as tabs
+ * @see https://www.30secondsofcode.org/css/s/details-tabbed-content/
+ * @see https://codepen.io/RYJASM/pen/eYoYeRg
+ */
+.details.tabs {
+    position: relative;
+    justify-content: left;
+    display: flex;
+    flex-wrap: wrap;
+    // Details Item
+    & > details {
+        display: contents;
+        // Details Tab
+        & > summary {
+            order: 0; // tabs come first
+            padding: 0.3rem 0.5rem;
+            display: block;
+            background: #ebebeb;
+            cursor: pointer;
+            border: 1px solid;
+            position: relative;
+            bottom: -1px;
+            &::marker {
+                display: none; // hide the default arrow icon
+            }
+        }
+        // Details Content
+        & > div {
+            order: 1; // content comes after tabs
+            padding: 0.5rem;
+            width: 100%;
+            border: 1px solid;
+        }
+        &:not(:first-child) {
+            & > summary {
+                border-left: none;
+            }
+        }
+        &[open] {
+            & > summary {
+                background: #fff;
+                border-bottom: solid 1px white;
+            }
+            &::details-content {
+                display: contents;
+            }
+        }
+    }
+}
