@@ -38,6 +38,21 @@
     {%- endif -%}
 {%- endmacro language_default -%}
 
+{%- macro available_languages() -%}
+    {%- set list = [] -%}
+    {%- set language_current = multilingual::language_current() -%}
+    {%- if "xx" != language_current -%}
+        {%- set list = list | concat(with=language_current) -%}
+    {%- endif -%}
+    {%- for lang, value in config.languages -%}
+        {%- if "xx" != lang -%}
+            {%- set_global list = list | concat(with=lang) -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {#- Print content -#}
+    {{- list | json_encode() | safe -}}
+{%- endmacro available_languages -%}
+
 {%- macro load_content() -%}
     {%- set content = "" -%}
     {%- set content_file = "" -%}
