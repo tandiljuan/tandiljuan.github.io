@@ -73,6 +73,12 @@ default_language = "en"
 [extra.languages.en]
 emoji = "gb"
 
+[extra.languages.en.series]
+summary = 'This post is part of the series "{{ term }}"'
+
 ## Spanish
 [extra.languages.es]
 emoji = "es"
+
+[extra.languages.es.series]
+summary = 'Esta publicación es parte de la serie "{{ term }}"'
