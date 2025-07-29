@@ -6,24 +6,29 @@
 {% endblock header %}
 
 {% block content %}
-{% if paginator %}
-{% set pages = paginator.pages %}
-{% else %}
-{% set pages = term.pages %}
-{% endif %}
-{% if "series" == taxonomy.slug %}
-{% set pages = pages | sort(attribute="date") %}
-{% endif %}
+{%- if paginator %}
+{%- set pages = paginator.pages %}
+{%- else %}
+{%- set pages = term.pages %}
+{%- endif %}
+{%- if "series" == taxonomy.slug %}
+{%- set pages = pages | sort(attribute="date") %}
+{%- endif %}
 <ul>
-{% for page in pages %}
+{%- for page in pages %}
     <li>
-        <a href="{{ page.permalink | safe }}">{% if page.date %}{{ page.date | date(format="%Y-%m-%d") }} - {% endif %}{{ page.title }}</a>
+        <a href="{{ page.permalink | safe }}">
+            {%- if page.date %}{{ page.date | date(format="%Y-%m-%d") }} - {% endif -%}
+            {{- page.title -}}
+        </a>
+        {%- if page.description %}
         <br />
         {{ page.description }}
+        {%- endif %}
     </li>
-{% endfor %}
+{%- endfor %}
 </ul>
-{% if paginator %}
+{%- if paginator %}
 <p>{% if paginator.previous %}<a href="{{ paginator.first }}">&lt;&lt; First</a> <a href="{{ paginator.previous }}">&lt; Previous</a>{% endif %} [{{ paginator.current_index }}/{{ paginator.number_pagers }}] {% if paginator.next %}<a href="{{ paginator.next }}">Next &gt;</a> <a href="{{ paginator.last }}">Last &gt;&gt;</a>{% endif %}</p>
-{% endif %}
+{%- endif %}
 {% endblock content %}
