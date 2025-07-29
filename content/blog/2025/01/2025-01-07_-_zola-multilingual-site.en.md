@@ -6,18 +6,8 @@ tags = ['Zola', 'Static Site Generator', 'i18n', 'Templates']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>This post belongs to a series of posts related to the Zola static site engine.</summary>
-
-1. [Zola Kickoff](@/blog/2025/01/2025-01-04_-_zola-kickoff.en.md)
-2. Zola Multilingual Site
-3. [Zola Tuning](@/blog/2025/01/2025-01-13_-_zola-tuning.en.md)
-4. [Zola Deploy](@/blog/2025/01/2025-01-20_-_zola-deploy.en.md)
-
-</details>
 
 Here, we're going to describe how to build a multilingual site in a hacky way. This means that it won't follow the instructions provided by the documentation 100% and will create an alternative solution.
 

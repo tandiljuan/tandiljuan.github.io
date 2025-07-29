@@ -6,18 +6,8 @@ tags = ['Zola', 'Static Site Generator', 'i18n', 'Templates']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>Esta publicación pertenece a una serie de publicaciones relacionadas con el motor de sitios estáticos Zola.</summary>
-
-1. [Arrancando con Zola](@/blog/2025/01/2025-01-04_-_zola-kickoff.es.md)
-2. Múltiples Idiomas con Zola
-3. [Ajustando Zola](@/blog/2025/01/2025-01-13_-_zola-tuning.es.md)
-4. [Despliegue de Zola](@/blog/2025/01/2025-01-20_-_zola-deploy.es.md)
-
-</details>
 
 Hoy vamos a describir cómo construir un sitio multidioma de una manera poco convencional. Esto significa que no se seguirá las instrucciones proporcionadas por la documentación al 100% y se creará una solución alternativa.
 
