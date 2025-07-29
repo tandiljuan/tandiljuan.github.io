@@ -53,6 +53,17 @@
     {{- list | json_encode() | safe -}}
 {%- endmacro available_languages -%}
 
+{%- macro translate(key) -%}
+    {%- set extra = config.extra.languages[lang] | default(value=[]) -%}
+    {%- set translated = extra.translations[key] | default(value='') -%}
+    {%- if not translated -%}
+        {%- set slug = key | slugify -%}
+        {%- set translated = extra.translations[slug] | default(value=key) -%}
+    {%- endif -%}
+    {#- Print content -#}
+    {{- translated | safe -}}
+{%- endmacro translate -%}
+
 {%- macro load_content() -%}
     {%- set content = "" -%}
     {%- set content_file = "" -%}
