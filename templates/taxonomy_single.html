@@ -2,7 +2,7 @@
 
 {% block header %}
 <p class="slug"><a href="{{ current_path }}..">..</a>/{{ term.slug }}/</p>
-<h1>{{ term.name }}</h1>
+<h1>{{ multilingual::translate(key=term.name) }}</h1>
 {% endblock header %}
 
 {% block content %}
