@@ -12,7 +12,10 @@
         {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
         {# ## Process the "special" name '[langs]' -#}
         {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
-        {% if "[langs]" == link_name and config.extra.languages | length > 0 -%}
+        {% if "[langs]" == link_name -%}
+            {% if config.extra.languages | default(value=[]) | length == 0 -%}
+                {% continue -%}
+            {% endif -%}
             {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
             {# ## Iterate through the languages in the config file -#}
             {# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -#}
