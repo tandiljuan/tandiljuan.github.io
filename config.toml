@@ -80,5 +80,8 @@ summary = 'This post is part of the series "{{ term }}"'
 [extra.languages.es]
 emoji = "es"
 
+[extra.languages.es.translations]
+zola-step-by-step = 'Zola Paso a Paso'
+
 [extra.languages.es.series]
 summary = 'Esta publicación es parte de la serie "{{ term }}"'
