@@ -6,18 +6,8 @@ tags = ['Zola', 'Static Site Generator', 'Performance', 'SEO']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>This post belongs to a series of posts related to the Zola static site engine.</summary>
-
-1. [Zola Kickoff](@/blog/2025/01/2025-01-04_-_zola-kickoff.en.md)
-2. [Zola Multilingual Site](@/blog/2025/01/2025-01-07_-_zola-multilingual-site.en.md)
-3. Zola Tuning
-4. [Zola Deploy](@/blog/2025/01/2025-01-20_-_zola-deploy.en.md)
-
-</details>
 
 In previous articles, we've created a static site using Zola and made it multilingual. While this might serve as a basic introduction, I believe we can make a few tweaks to improve the site further. In this post, we'll configure some settings, display emojis, install external libraries, and set up a search page, among other adjustments.
 

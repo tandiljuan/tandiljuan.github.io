@@ -6,18 +6,8 @@ tags = ['Zola', 'Static Site Generator', 'Performance', 'SEO']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>Esta publicación pertenece a una serie de publicaciones relacionadas con el motor de sitios estáticos Zola.</summary>
-
-1. [Arrancando con Zola](@/blog/2025/01/2025-01-04_-_zola-kickoff.es.md)
-2. [Múltiples Idiomas con Zola](@/blog/2025/01/2025-01-07_-_zola-multilingual-site.es.md)
-3. Ajustando Zola
-4. [Despliegue de Zola](@/blog/2025/01/2025-01-20_-_zola-deploy.es.md)
-
-</details>
 
 En artículos anteriores, hemos creado un sitio estático usando Zola y lo hemos hecho multidioma. Si bien esto puede servir como una introducción básica, creo que podemos hacer algunos ajustes para mejorar el sitio. En esta publicación, configuraremos algunas opciones, mostraremos emojis, instalaremos bibliotecas externas y crearemos una página de búsqueda, entre otros ajustes.
 
