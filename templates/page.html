@@ -41,6 +41,8 @@ Table Of Contents
 </nav>
 {% endif %}
 
+{%- include "partials/base/series_toc.html" ignore missing %}
+
 {% set content = multilingual::load_content() -%}
 {% set content = variable::all_replace(text=content) -%}
 {{ content | safe }}
