@@ -340,6 +340,15 @@ Now you can start an SSH server to access Termux from an external computer. Belo
 cat > $PREFIX/bin/sshd-custom <<HEREDOC && chmod u+x $PREFIX/bin/sshd-custom
 #!$PREFIX/bin/bash
 
+# Release the CPU before exit
+cleanup() {
+  termux-wake-unlock
+  echo "...bye!"
+}
+
+# Catch Ctrl+C signal and call 'cleanup' function
+trap cleanup SIGINT
+
 # Prevent the CPU from sleeping
 termux-wake-lock
 
