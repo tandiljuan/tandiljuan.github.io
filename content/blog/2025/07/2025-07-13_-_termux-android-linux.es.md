@@ -627,7 +627,7 @@ ssh alpine "sudo sed -i -e 's/^GatewayPorts no/GatewayPorts yes/' -e 's/^AllowTc
 ```
 
 
-Docker
+Docker {#docker}
 ------
 
 Como mencioné en la introducción, Termux estará limitado por el dispositivo. Es por eso que, para ejecutar Docker, has emulado una computadora e instalado Alpine Linux en ella. Pero, en su estado actual, es bastante incómodo iniciar sesión en Alpine cada vez que quieres ejecutar un comando de Docker. Durante la configuración de Alpine Linux, expusiste el puerto **2375**, que permite que un cliente de Docker interactúe con el demonio de Docker.
