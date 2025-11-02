@@ -1,0 +1,64 @@
+{#- ----------------------------- IMPORT MACROS ---------------------------- -#}
+{%- import 'macros/string.html' as string -%}
+{#- --------------------------------- **** --------------------------------- -#}
+{#- # Short-Code: `details_summary`                                          -#}
+{#-                                                                          -#}
+{#- Splits the body into sections using a given pattern and converts them    -#}
+{#- into `<details><summary>` HTML elements. Each section has a header that  -#}
+{#- will become the summary, and a body that will be the content of the      -#}
+{#- details element.                                                         -#}
+{#-                                                                          -#}
+{#- Both the header and the body will be treated as Markdown content.        -#}
+{#-                                                                          -#}
+{#- Example of the body:                                                     -#}
+{#-                                                                          -#}
+{#- ```                                                                      -#}
+{#- {% details_summary() %}                                                  -#}
+{#- :: **Header1**                                                           -#}
+{#- :: _Header2_                                                             -#}
+{#- This will appear in 'Header1' **and** 'Header2' details sections.        -#}
+{#- :: Header3                                                               -#}
+{#- This will appear **only** in the 'Header3' details section.              -#}
+{#- {% end %}                                                                -#}
+{#- ```                                                                      -#}
+{#-                                                                          -#}
+{#- @param {string} [class="tabs"] - The class name for the container        -#}
+{#-   `<div>`.                                                               -#}
+{#- @param {string} [name="details-{nth}"] - The `name` attribute for the    -#}
+{#-   details element. Allows multiple `<details>` elements to be connected. -#}
+{#- @param {bool} [close=false] - Determines if an open `<details>` element  -#}
+{#-   can be closed.                                                         -#}
+{#- @param {string} [pat='::'] - The pattern used to delimit sections in the -#}
+{#-   body.                                                                  -#}
+{#- --------------------------------- **** --------------------------------- -#}
+{#- ------------------------------ VARIABLES ------------------------------- -#}
+{%- set main_class = "details" -%}
+{#- ------------------------------ PARAMETERS ------------------------------ -#}
+{%- set container_class = class | default(value="tabs") -%}
+{%- set details_name = name | default(value=main_class ~ "-" ~ nth) -%}
+{%- set close_open = close | default(value=false) -%}
+{%- set pat = pat | default(value="::") -%}
+{#- ---------------------------- BUILD CLASSES ----------------------------- -#}
+{%- set main_class = main_class ~ " " ~ container_class ~ " " ~ nth -%}
+{%- if close_open == false -%}
+    {%- set main_class = main_class ~ " no-close" -%}
+{%- endif -%}
+{#- ------------------------------ SPLIT BODY ------------------------------ -#}
+{%- set details = string::group_extractor(text=body,pat=pat) -%}
+{%- set details = load_data(literal=details, format="json") -%}
+{#- ---------------------------- HTML TEMPLATE ----------------------------- -#}
+<div class="{{ main_class }}">
+    {%- for d in details -%}
+        <details {% if details_name %}name="{{ details_name }}"{% endif %} {% if loop.first %}open{% endif %}>
+            <summary data-id="{{ d.head | slugify }}">{{ d.head | markdown(inline=true) | safe }}</summary>
+            <div>
+                {%- for i in details | slice(start=loop.index0) -%}
+                    {%- if i.body %}
+                        {{- i.body | markdown(inline=true) | safe -}}
+                        {%- break %}
+                    {%- endif -%}
+                {%- endfor -%}
+            </div>
+        </details>
+    {%- endfor %}
+</div>

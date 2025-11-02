@@ -1,0 +1,117 @@
+{#- --------------------------------- **** --------------------------------- -#}
+{#- # Macro: `group_extractor`                                               -#}
+{#-                                                                          -#}
+{#- This macro is a flexible tool for parsing delimited text and converting  -#}
+{#- it into a structured JSON format. It provides options for handling       -#}
+{#- default groups (groups without headers) and extracting arguments from    -#}
+{#- headers. The macro uses regular expressions and string manipulation to   -#}
+{#- achieve its goal.                                                        -#}
+{#-                                                                          -#}
+{#- For example, given the following text and using the default parameters:  -#}
+{#-                                                                          -#}
+{#- ```                                                                      -#}
+{#- :: Header1                                                               -#}
+{#- Body 1.                                                                  -#}
+{#- :: Header2                                                               -#}
+{#- Body 2.                                                                  -#}
+{#- ```                                                                      -#}
+{#-                                                                          -#}
+{#- The resulting JSON will be as follows:                                   -#}
+{#-                                                                          -#}
+{#- ```                                                                      -#}
+{#- [                                                                        -#}
+{#-   {"head":"Header1","body":"Body 1."},                                   -#}
+{#-   {"head":"Header2","body":"Body 2."}                                    -#}
+{#- ]                                                                        -#}
+{#- ```                                                                      -#}
+{#-                                                                          -#}
+{#- However, with the following text and parameters `pat='xx'`,              -#}
+{#- `default=true`, and `args=','`:                                          -#}
+{#-                                                                          -#}
+{#- ```                                                                      -#}
+{#- xx Header1,param1                                                        -#}
+{#- Body 1.                                                                  -#}
+{#- xx Header2,param2                                                        -#}
+{#- Body 2.                                                                  -#}
+{#- xx                                                                       -#}
+{#- Default Body.                                                            -#}
+{#- ```                                                                      -#}
+{#-                                                                          -#}
+{#- The resulting JSON will be:                                              -#}
+{#-                                                                          -#}
+{#- ```                                                                      -#}
+{#- [                                                                        -#}
+{#-   {"head":"Header1","args":"param1","body":"Body 1."},                   -#}
+{#-   {"head":"Header2","args":"param2","body":"Body 2."},                   -#}
+{#-   {"body":"Default Body."}                                               -#}
+{#- ]                                                                        -#}
+{#- ```                                                                      -#}
+{#-                                                                          -#}
+{#- @param {string} text - The content to be processed.                      -#}
+{#- @param {string} [pat='::'] - The pattern that delimits one group from    -#}
+{#-   another.                                                               -#}
+{#- @param {bool} [default=false] - Indicates whether the last group is a    -#}
+{#-   "default" group (without a header).                                    -#}
+{#- @param {string|bool} [args=false] - If a string, it specifies the        -#}
+{#-   delimiter used to split the header into a head and arguments.  If set  -#}
+{#-   to `false`, no argument extraction is performed.                       -#}
+{#- --------------------------------- **** --------------------------------- -#}
+{%- macro group_extractor(text, pat='::', default=false, args=false)  -%}
+    {#- --- REPLACE PATTERNS  --- -#}
+    {%- set rgx_pat = '(^|\r|\n|\r\n)?' ~ pat ~ '(?P<head>.*)(\r|\n|\r\n)?' -%}
+    {%- set rgx_rep = '[[[group_head_start]]]$head[[[group_head_end]]]' -%}
+    {%- set text = text | regex_replace(pattern=rgx_pat, rep=rgx_rep) -%}
+    {%- set text = text | regex_replace(pattern='^\[\[\[group_head_start\]\]\]', rep='') -%}
+    {#- --- PROCESS TEXT  --- -#}
+    {%- set json = '' -%}
+    {%- set text = text | split(pat='[[[group_head_start]]]') -%}
+    {%- for group in text -%}
+        {%- set group = group | trim | split(pat='[[[group_head_end]]]') -%}
+        {%- set grp_head = group | nth(n=0) | trim -%}
+        {%- set grp_body = group | nth(n=1) | trim -%}
+        {%- set grp_args = false -%}
+        {#- --- Check if it needs to switch the header and the body --- -#}
+        {%- if not grp_body and loop.last and default -%}
+            {%- set grp_body = grp_head -%}
+            {%- set grp_head = false -%}
+        {%- endif -%}
+        {#- --- Check if it needs to process arguments --- -#}
+        {%- if false != args -%}
+            {%- if args is not string -%}
+                {%- set args = args | json_encode() -%}
+            {%- endif -%}
+            {#- --- Check if the last item just has arguments (without header) --- -#}
+            {%- set grp_head = grp_head | split(pat=args) -%}
+            {%- if grp_head | length == 1 and loop.last and default -%}
+                {%- set grp_args = grp_head[0] | trim -%}
+                {%- set grp_head = false -%}
+            {%- else -%}
+                {%- if grp_head | length > 2 -%}
+                    {%- set grp_args = grp_head | slice(start=1) -%}
+                {%- else -%}
+                    {%- set grp_args = grp_head[1] | default(value='') | trim -%}
+                {%- endif -%}
+                {%- set grp_head = grp_head[0] | trim -%}
+            {%- endif -%}
+        {%- endif -%}
+        {#- --- Build JSON string --- -#}
+        {%- set group = [] -%}
+        {%- if false != grp_head -%}
+            {%- set grp_head = grp_head | json_encode() -%}
+            {%- set group = group | concat(with='"head":' ~ grp_head) -%}
+        {%- endif -%}
+        {%- if grp_args -%}
+            {%- set grp_args = grp_args | json_encode() -%}
+            {%- set group = group | concat(with='"args":' ~ grp_args) -%}
+        {%- endif -%}
+        {%- set grp_body = grp_body | json_encode() -%}
+        {%- set group = group | concat(with='"body":' ~ grp_body) -%}
+        {%- set group = group | join(sep=",") -%}
+        {%- if json | length -%}
+            {%- set_global json = json ~ ',' -%}
+        {%- endif -%}
+        {%- set_global json = json ~ '{' ~ group ~ '}' -%}
+    {%- endfor %}
+    {%- set json = '[' ~ json ~ ']' -%}
+    {{- json | safe -}}
+{%- endmacro group_extractor -%}
