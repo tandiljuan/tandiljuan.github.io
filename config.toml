@@ -53,9 +53,6 @@ taxonomies = [
 [extra]
 # Put all your custom variables here
 
-# Set default language for multilingual site
-default_language = "en"
-
 # Header navigation links
 header_nav = [
     { name = "~home", url = "/" },
@@ -65,10 +62,17 @@ header_nav = [
     { name = "[langs]" },
 ]
 
-# Extra language configuration
+# ----------------------------
+# Extra Language Configuration
+# ----------------------------
 
+# Set default language for multilingual site
+default_language = "en"
+
+## English
 [extra.languages.en]
 emoji = "gb"
 
+## Spanish
 [extra.languages.es]
 emoji = "es"

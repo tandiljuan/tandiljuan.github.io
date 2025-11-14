@@ -38,6 +38,32 @@
     {%- endif -%}
 {%- endmacro language_default -%}
 
+{%- macro available_languages() -%}
+    {%- set list = [] -%}
+    {%- set language_current = multilingual::language_current() -%}
+    {%- if "xx" != language_current -%}
+        {%- set list = list | concat(with=language_current) -%}
+    {%- endif -%}
+    {%- for lang, value in config.languages -%}
+        {%- if "xx" != lang -%}
+            {%- set_global list = list | concat(with=lang) -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {#- Print content -#}
+    {{- list | json_encode() | safe -}}
+{%- endmacro available_languages -%}
+
+{%- macro translate(key) -%}
+    {%- set extra = config.extra.languages[lang] | default(value=[]) -%}
+    {%- set translated = extra.translations[key] | default(value='') -%}
+    {%- if not translated -%}
+        {%- set slug = key | slugify -%}
+        {%- set translated = extra.translations[slug] | default(value=key) -%}
+    {%- endif -%}
+    {#- Print content -#}
+    {{- translated | safe -}}
+{%- endmacro translate -%}
+
 {%- macro load_content() -%}
     {%- set content = "" -%}
     {%- set content_file = "" -%}
