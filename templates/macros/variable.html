@@ -30,6 +30,35 @@
     {{- text | safe -}}
 {%- endmacro var_replace -%}
 
+{%- macro env(name) -%}
+    {%- set value = '' -%}
+    {%- if name and name is string -%}
+        {%- set needle = name -%}
+        {%- set value = get_env(name=needle, default=false) -%}
+        {%- if false == value -%}
+            {%- set value = '' -%}
+            {% set haystack = load_data(path='.env', format='toml', required=false) %}
+            {#- The following section should be splitted in another macro and -#}
+            {#- called from here, but it's not well supported by tera. -#}
+            {%- if haystack is object -%}
+                {%- set needle = needle | split(pat='.') -%}
+                {%- for key in needle -%}
+                    {%- set_global haystack = haystack[key] | default(value='[[EMPTY]]') -%}
+                    {%- if '[[EMPTY]]' == haystack -%}
+                        {%- set_global haystack = '' -%}
+                        {%- break -%}
+                    {%- endif -%}
+                {%- endfor -%}
+                {%- set value = haystack -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+    {%- if value is not string -%}
+        {%- set value = value | json_encode() -%}
+    {%- endif -%}
+    {{- value | trim | safe -}}
+{%- endmacro env -%}
+
 {%- macro config_replace(text) -%}
     {%- if config -%}
         {%- set text = variable::var_replace(text=text, var='config', value=config) -%}

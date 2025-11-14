@@ -1,0 +1,79 @@
+{#- ----------------------------- IMPORT MACROS ---------------------------- -#}
+{%- import 'macros/variable.html' as variable                                -%}
+{%- import 'macros/string.html' as string                                    -%}
+{%- import 'macros/link.html' as link                                        -%}
+{#- --------------------------------- **** --------------------------------- -#}
+{#- # Short-Code: `content_switcher`                                         -#}
+{#-                                                                          -#}
+{#- Splits the body into sections using a given pattern. Each section has a  -#}
+{#- header, a body, and optionally an argument.                              -#}
+{#-                                                                          -#}
+{#- The section whose header matches the value from the given environment    -#}
+{#- variable will be selected. If there is no match, the default section     -#}
+{#- will be selected (if it exists).                                         -#}
+{#-                                                                          -#}
+{#- The selected section's body will be processed based on the section's     -#}
+{#- argument.                                                                -#}
+{#-                                                                          -#}
+{#- Below is a list of supported arguments:                                  -#}
+{#-                                                                          -#}
+{#- * `escape` (default): Escape the content and print it.                   -#}
+{#- * `continue`: Ignore this section and continue with the next one.        -#}
+{#- * `safe`: Do not escape the content and print it.                        -#}
+{#- * `markdown`: Parse the content as markdown (inline) and print it.       -#}
+{#- * `link_internal`: Parse the content as an internal link and print it.   -#}
+{#-                                                                          -#}
+{#- Example of how to use this short-code:                                   -#}
+{#-                                                                          -#}
+{#- ```                                                                      -#}
+{#- {% content_switcher(env='ENVIRONMENT') %}                                -#}
+{#- :: dev,continue                                                          -#}
+{#- :: lcl,safe                                                              -#}
+{#- <p>This will be printed without escaping in LOCAL and DEVELOPMENT.</p>   -#}
+{#- :: tst                                                                   -#}
+{#- <p>This will be escaped and printed in TEST.</p>                         -#}
+{#- :: stg,markdown                                                          -#}
+{#- This will parsed as **Markdown** and printed in STAGE.                   -#}
+{#- Next section is the default. Will be chosen if there wasn't any match.   -#}
+{#- :: link_internal                                                         -#}
+{#- {"name":"Image Title","path":"path/to/image.png"}                        -#}
+{#- {% end %}                                                                -#}
+{#- ```                                                                      -#}
+{#-                                                                          -#}
+{#- @param {string} [env=''] - Name of the environment variable to use for   -#}
+{#-   comparison.                                                            -#}
+{#- @param {string} [pat='::'] - Pattern used to delimit the sections in the -#}
+{#-   body.                                                                  -#}
+{#- --------------------------------- **** --------------------------------- -#}
+{#- ------------------------------ PARAMETERS ------------------------------ -#}
+{%- set env = env | default(value='') -%}
+{%- set pat = pat | default(value="::") -%}
+{#- ------------------------------ VARIABLES ------------------------------- -#}
+{%- set value = variable::env(name=env) -%}
+{%- set continue = false -%}
+{#- ------------------------------ SPLIT BODY ------------------------------ -#}
+{%- set sections = string::group_extractor(text=body,pat=pat,default=true,args=',') -%}
+{%- set sections = load_data(literal=sections, format="json") -%}
+{#- ----------------------------- PROCESS BODY ----------------------------- -#}
+{%- for s in sections %}
+    {%- set variable = s.head | default(value=false) -%}
+    {%- set type = s.args | default(value='escape') -%}
+    {%- set content = s.body -%}
+    {%- if false == variable and loop.last -%}{% set variable = true %}{% endif -%}
+    {%- if continue or variable == value or true == variable -%}
+        {%- set_global continue = false -%}
+        {%- if 'continue' == type -%}
+            {%- set_global continue = true -%}
+            {%- continue -%}
+        {%- elif 'escape' == type -%}
+            {{ content }}
+        {%- elif 'safe' == type -%}
+            {{ content | safe }}
+        {%- elif 'markdown' == type -%}
+            {{ content | markdown(inline=true) | safe }}
+        {%- elif 'link_internal' == type -%}
+            {{ link::internal(json=content) | markdown() | safe }}
+        {%- endif -%}
+        {%- break -%}
+    {%- endif -%}
+{%- endfor -%}

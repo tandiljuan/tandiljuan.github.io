@@ -23,7 +23,8 @@ Icon?
 Thumbs.db
 ehthumbs.db
 
-##############
-# Zola files #
-##############
+##########################
+# Zola and project files #
+##########################
 public
+.env

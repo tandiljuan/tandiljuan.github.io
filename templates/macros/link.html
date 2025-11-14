@@ -1,0 +1,15 @@
+{%- macro internal(name="", path="", json="") -%}
+    {#- PARSE JSON -#}
+    {%- if json -%}
+        {%- set json = load_data(literal=json, format="json") -%}
+        {%- if json.name %}{% set name = json.name %}{% endif -%}
+        {%- if json.path %}{% set path = json.path %}{% endif -%}
+    {%- endif %}
+    {#- CHECK IF IMAGE -#}
+    {%- set is_image = false -%}
+    {%- if path is matching(".*\.(png|jpg|jpeg|svg)$") -%}
+        {%- set is_image = true -%}
+    {%- endif -%}
+    {#- RENDER LINK -#}
+    {%- if is_image %}!{% endif %}[{{ name }}]({{ get_url(path=path) }})
+{%- endmacro internal -%}
