@@ -6,18 +6,8 @@ tags = ['Zola', 'CI/CD', 'GitHub Actions', 'GitHub Pages']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>This post belongs to a series of posts related to the Zola static site engine.</summary>
-
-1. [Zola Kickoff](@/blog/2025/01/2025-01-04_-_zola-kickoff.en.md)
-2. [Zola Multilingual Site](@/blog/2025/01/2025-01-07_-_zola-multilingual-site.en.md)
-3. [Zola Tuning](@/blog/2025/01/2025-01-13_-_zola-tuning.en.md)
-4. Zola Deploy
-
-</details>
 
 We have reached the final step of our brief overview of how to build a simple static site with Zola. The next steps aren't strictly necessary if you only want to build the site, but they are essential if you plan to publish it online. There are many options for publishing a site, but since we're working with a static site, here's a list of services that specialize in this:
 

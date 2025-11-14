@@ -6,18 +6,8 @@ tags = ['Zola', 'Static Site Generator', 'Tutorial']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>This post belongs to a series of posts related to the Zola static site engine.</summary>
-
-1. Zola Kickoff
-2. [Zola Multilingual Site](@/blog/2025/01/2025-01-07_-_zola-multilingual-site.en.md)
-3. [Zola Tuning](@/blog/2025/01/2025-01-13_-_zola-tuning.en.md)
-4. [Zola Deploy](@/blog/2025/01/2025-01-20_-_zola-deploy.en.md)
-
-</details>
 
 I have a bunch of documents and notes scattered throughout my file system, as well as a local [TiddlyWiki](https://tiddlywiki.com/) instance. I guess more will come, and because of this, I felt the need to start blogging. In the past, I've been putting off reviewing everything and keeping only what I need or think is useful. Well, it seems that the time has come, and this post is the first step.
 

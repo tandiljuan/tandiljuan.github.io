@@ -6,18 +6,8 @@ tags = ['Zola', 'Static Site Generator', 'Tutorial']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>Esta publicación pertenece a una serie de publicaciones relacionadas con el motor de sitios estáticos Zola.</summary>
-
-1. Arrancando con Zola
-2. [Múltiples Idiomas con Zola](@/blog/2025/01/2025-01-07_-_zola-multilingual-site.es.md)
-3. [Ajustando Zola](@/blog/2025/01/2025-01-13_-_zola-tuning.es.md)
-4. [Despliegue de Zola](@/blog/2025/01/2025-01-20_-_zola-deploy.es.md)
-
-</details>
 
 Tengo muchos documentos y notas dispersos en mi sistema de archivos, además de una instancia local de [TiddlyWiki](https://tiddlywiki.com/). Seguramente seguirán apareciendo más, y por eso sentí la necesidad de empezar a bloguear. En el pasado solía posponer la revisión de todo esto, y quedarme solamente con lo que necesito o considero útil. Bueno, parece que llegó el momento, y esta publicación es el primer paso.
 

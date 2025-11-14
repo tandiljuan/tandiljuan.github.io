@@ -1,0 +1,41 @@
+{%- if page.extra.series -%}
+{%- set extra = config.extra.languages[lang] -%}
+{%- set kind = extra.series.taxonomy | default(value='series') -%}
+{%- set kind = page.extra.series.taxonomy | default(value=kind) -%}
+{%- set item = extra.series.index | default(value=0) -%}
+{%- set item = page.extra.series.index | default(value=item) -%}
+{%- set term = page.taxonomies[kind] | default(value=[]) | nth(n=item) -%}
+{%- set series = get_taxonomy_term(kind=kind, term=term, lang=lang, required=false) -%}
+{%- if series.page_count %}
+<div class="series-toc">
+    {%- set term = multilingual::translate(key=term) %}
+    {%- set summary = extra.series.summary | default(value='{{ term }}') %}
+    {%- set summary = page.extra.series.summary | default(value=summary) %}
+    {%- set summary = summary | regex_replace(pattern='\{\{\s*term\s*\}\}', rep=term) %}
+    {%- set summary = summary | markdown(inline=true) %}
+    {%- set description = extra.series.description | default(value='') %}
+    {%- set description = page.extra.series.description | default(value=description) %}
+    {%- set description = description | regex_replace(pattern='\{\{\s*term\s*\}\}', rep=term) %}
+    {%- set description = description | markdown(inline=true) %}
+    <details class="auto-hide">
+        <summary>{{ summary | safe }}</summary>
+        <div>
+            {%- if description %}
+            <p>{{ description | safe }}</p>
+            {%- endif %}
+            <ol>
+                {%- for series_page in series.pages | sort(attribute='date') %}
+                <li>
+                    {%- if series_page.permalink == page.permalink -%}
+                    {{- series_page.title -}}
+                    {%- else -%}
+                    <a href="{{ series_page.permalink | safe }}">{{ series_page.title }}</a>
+                    {%- endif -%}
+                </li>
+                {%- endfor %}
+            </ol>
+        </div>
+    </details>
+</div>
+{%- endif -%}
+{%- endif -%}

@@ -6,18 +6,8 @@ tags = ['Zola', 'CI/CD', 'GitHub Actions', 'GitHub Pages']
 series = ['Zola Step by Step']
 [extra]
 add_toc = true
+series = true
 +++
-
-<details class="auto-hide">
-
-<summary>Esta publicación pertenece a una serie de publicaciones relacionadas con el motor de sitios estáticos Zola.</summary>
-
-1. [Arrancando con Zola](@/blog/2025/01/2025-01-04_-_zola-kickoff.es.md)
-2. [Múltiples Idiomas con Zola](@/blog/2025/01/2025-01-07_-_zola-multilingual-site.es.md)
-3. [Ajustando Zola](@/blog/2025/01/2025-01-13_-_zola-tuning.es.md)
-4. Despliegue de Zola
-
-</details>
 
 Hemos llegado al último capitulo de nuestra breve serie de tutoriales donde construimos un simple sitio estático con Zola. Los siguientes pasos no son estrictamente necesarios si solo quieres construir el sitio, pero son esenciales si planeas publicarlo en Internet. Hay muchas opciones para publicar un sitio, pero dado que estamos trabajando con un sitio estático, aquí hay una lista de servicios que se especializan en esto:
 
