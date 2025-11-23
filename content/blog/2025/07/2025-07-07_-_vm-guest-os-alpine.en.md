@@ -3,8 +3,10 @@ title = "Alpine in QEMU: A Practical Guide From Scratch"
 date = 2025-07-07T20:56:38-03:00
 [taxonomies]
 tags = ['Alpine Linux', 'Virtualization', 'QEMU', 'Docker']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 In this post, we'll go through the steps needed to install [Alpine Linux](https://alpinelinux.org/) as a guest OS in a virtual machine. Alpine is a lightweight Linux distribution based on [musl libc](https://musl.libc.org/) and [busybox](https://busybox.net/). Because of its minimal size, it is commonly used as a base for [container images](https://opencontainers.org/). Here, taking advantage of its size, we'll use it to install [Docker](https://en.wikipedia.org/wiki/Docker_%28software%29), aiming for a smaller image than what we'd get using Debian (as shown in the [previous post](@/blog/2024/12/2024-12-23_-_vm-guest-os-debian.en.md)). The main purpose of this image is to let us run containers from [Termux](https://en.wikipedia.org/wiki/Termux), which isn't possible on a regular (non-[rooted](https://en.wikipedia.org/wiki/Rooting_%28Android%29)) Android device.
