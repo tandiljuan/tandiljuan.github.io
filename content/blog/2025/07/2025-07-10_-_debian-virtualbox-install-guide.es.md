@@ -3,8 +3,10 @@ title = "Instalando Debian en VirtualBox: Una Guía Paso a Paso"
 date = 2025-07-10T18:14:07-03:00
 [taxonomies]
 tags = ['Debian', 'VirtualBox', 'Virtualization', 'Tutorial']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 Esta publicación será breve, pero intenté compensarlo incluyendo varias capturas de pantalla. Veremos cómo crear una máquina virtual e instalar [Debian OS](https://www.debian.org/) usando [VirtualBox](https://www.virtualbox.org/). Describiré dos métodos para instalar Debian: una instalación guiada donde especificaras tus preferencias durante el proceso, y una instalación desatendida donde se leen esas preferencias desde un archivo de configuración para la instalación del sistema operativo.

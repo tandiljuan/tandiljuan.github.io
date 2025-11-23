@@ -82,6 +82,7 @@ emoji = "es"
 
 [extra.languages.es.translations]
 zola-step-by-step = 'Zola Paso a Paso'
+linux-playground-from-scratch = 'Laboratorio de Linux Desde Cero'
 
 [extra.languages.es.series]
 summary = 'Esta publicación es parte de la serie "{{ term }}"'

@@ -3,8 +3,10 @@ title = "Termux: Your Pocket-Sized Linux on Android"
 date = 2025-07-13T19:03:32-03:00
 [taxonomies]
 tags = ['Termux', 'Android', 'QEMU', 'Docker']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 In previous posts, I explained how to set up a guest OS to run inside a virtual machine. However, you might not be able to run a VM because you lack administrator permissions, don't have sufficient hardware resources, prefer to avoid the hassle, or for any other reason. If this is your situation and you have an [Android](https://en.wikipedia.org/wiki/Android_%28operating_system%29) device, this post will explain how to use it as an alternative workaround.

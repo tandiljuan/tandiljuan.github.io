@@ -3,8 +3,10 @@ title = "Alpine en QEMU: Una Guía Práctica Desde Cero"
 date = 2025-07-07T20:56:38-03:00
 [taxonomies]
 tags = ['Alpine Linux', 'Virtualization', 'QEMU', 'Docker']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 En este post, vamos a repasar los pasos necesarios para instalar [Alpine Linux](https://alpinelinux.org/) en una máquina virtual. Alpine es una distribución de Linux liviana basada en [musl libc](https://musl.libc.org/) y [busybox](https://busybox.net/). Debido a su mínimo tamaño, se usa comúnmente para crear [imágenes de contenedores](https://opencontainers.org/). Aquí, aprovechando su tamaño, lo usaremos para instalar [Docker](https://en.wikipedia.org/wiki/Docker_%28software%29), buscando una imagen más pequeña de la que obtendríamos usando Debian (como se muestra en el [post anterior](@/blog/2024/12/2024-12-23_-_vm-guest-os-debian.es.md)). El propósito principal de esta imagen es permitirnos ejecutar contenedores desde [Termux](https://en.wikipedia.org/wiki/Termux), lo cual no es posible en un dispositivo Android regular (sin [rootear](https://en.wikipedia.org/wiki/Rooting_%28Android%29)).

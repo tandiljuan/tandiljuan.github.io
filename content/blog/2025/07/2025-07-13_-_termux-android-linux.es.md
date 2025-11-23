@@ -3,8 +3,10 @@ title = "Termux: Tu Linux de Bolsillo en Android"
 date = 2025-07-13T19:03:32-03:00
 [taxonomies]
 tags = ['Termux', 'Android', 'QEMU', 'Docker']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 En publicaciones anteriores, expliqué cómo configurar un sistema operativo para que se ejecute dentro de una máquina virtual. Sin embargo, es posible que no puedas ejecutar una VM por falta de permisos de administrador, por no tener suficientes recursos de hardware, porque prefieras evitar la molestia o por cualquier otro motivo. Si esta es tu situación y tenés un dispositivo [Android](https://en.wikipedia.org/wiki/Android_%28operating_system%29), en esta publicación te explicaré que hacer para usarlo como una solución alternativa.

@@ -3,8 +3,10 @@ title = "Debian Virtual: Guía Práctica Paso a Paso Desde Cero"
 date = 2024-12-23T20:40:22-03:00
 [taxonomies]
 tags = ['QEMU', 'Virtualization', 'Debian']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 Las máquinas virtuales (VMs) son una herramienta poderosa para ejecutar diferentes sistemas operativos en el mismo hardware. Esta guía te mostrará cómo configurar Debian, una distribución de Linux popular y liviana, como sistema operativo huésped dentro de una máquina virtual. Esta configuración es útil para probar software, aprender sobre diferentes sistemas operativos o crear un entorno de desarrollo consistente.
