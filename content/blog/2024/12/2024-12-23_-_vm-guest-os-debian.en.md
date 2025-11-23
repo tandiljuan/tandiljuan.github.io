@@ -3,8 +3,10 @@ title = "Virtual Debian: A Practical Step-by-Step Guide From Scratch"
 date = 2024-12-23T20:40:22-03:00
 [taxonomies]
 tags = ['QEMU', 'Virtualization', 'Debian']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 Virtual machines (VMs) are a powerful tool for running different operating systems on the same hardware. This guide will walk you through setting up Debian, a popular and lightweight Linux distribution, as a guest operating system within a virtual machine. This setup is useful for testing software, learning about different operating systems, or creating a consistent development environment.
