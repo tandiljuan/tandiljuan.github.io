@@ -3,8 +3,10 @@ title = "VirtualBox: Ejecutando Imágenes Preconfiguradas de Debian y Alpine"
 date = 2025-07-09T18:18:14-03:00
 [taxonomies]
 tags = ['VirtualBox', 'Virtualization', 'Debian', 'Alpine Linux']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 En esta guía, vamos a ver cómo ejecutar una VM de [VirtualBox](https://www.virtualbox.org/) usando las imágenes creadas en los posts anteriores.

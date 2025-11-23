@@ -3,8 +3,10 @@ title = "VirtualBox: Running Pre-Built Debian and Alpine Images"
 date = 2025-07-09T18:18:14-03:00
 [taxonomies]
 tags = ['VirtualBox', 'Virtualization', 'Debian', 'Alpine Linux']
+series = ['Linux Playground From Scratch']
 [extra]
 add_toc = true
+series = true
 +++
 
 In this guide, we'll walk through how to run a [VirtualBox](https://www.virtualbox.org/) VM using the images created in the previous posts.
