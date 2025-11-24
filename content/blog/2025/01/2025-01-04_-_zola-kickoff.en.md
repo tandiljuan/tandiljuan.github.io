@@ -1,6 +1,7 @@
 +++
 title = "Zola Kickoff"
 date = 2025-01-04T15:51:26-03:00
+updated = 2025-11-24T15:38:43-03:00
 [taxonomies]
 tags = ['Zola', 'Static Site Generator', 'Tutorial']
 series = ['Zola Step by Step']
@@ -89,28 +90,28 @@ The previous image shows us that Zola is working correctly. It also tells us tha
 Set up a Theme
 --------------
 
-I'm going to explain three options for installing a theme. The theme that I have chosen is [**no-style-please**](https://www.getzola.org/themes/no-style-please/), version/hash [`30dd31fb`](https://gitlab.com/atgumx/no-style-please/-/tree/30dd31fbc558597110f373b3ef1e0c75ea350f75).
+I'm going to explain three options for installing a theme. The theme that I have chosen is [**no-style-please**](https://www.getzola.org/themes/no-style-please/), version/hash [`30dd31fb`](https://github.com/tandiljuan/no-style-please/tree/30dd31fbc558597110f373b3ef1e0c75ea350f75). You can see that the URLs I'm using point to a [fork I made](https://github.com/tandiljuan/no-style-please), because the original repository is no longer available.
 
 The first option to install the theme is to download it as a compressed file from the repository server.
 
 ```bash
-curl -L -o themes/download.tar.bz2 'https://gitlab.com/atgumx/no-style-please/-/archive/30dd31fbc558597110f373b3ef1e0c75ea350f75/no-style-please-30dd31fbc558597110f373b3ef1e0c75ea350f75.tar.bz2' && \
-tar -C themes/ -xjf themes/download.tar.bz2 && \
-rm themes/download.tar.bz2 && \
+curl -L -o themes/download.tar.gz 'https://github.com/tandiljuan/no-style-please/archive/30dd31fbc558597110f373b3ef1e0c75ea350f75.tar.gz' && \
+tar -C themes/ -xzf themes/download.tar.gz && \
+rm themes/download.tar.gz && \
 mv themes/no-style-please-30dd31fbc558597110f373b3ef1e0c75ea350f75 themes/no-style-please
 ```
 
 The second option is to use **git** to clone the theme's repository.
 
 ```bash
-git clone https://gitlab.com/atgumx/no-style-please.git themes/no-style-please && \
+git clone https://github.com/tandiljuan/no-style-please.git themes/no-style-please && \
 (cd themes/no-style-please && git reset --hard 30dd31fbc558597110f373b3ef1e0c75ea350f75)
 ```
 
 The third option is to use git's **submodule** when the site we're creating is already being tracked in a git repository. This option is the best choice when we're already using git and won't be making any changes to the theme's files.
 
 ```bash
-git submodule add https://gitlab.com/atgumx/no-style-please.git themes/no-style-please && \
+git submodule add https://github.com/tandiljuan/no-style-please.git themes/no-style-please && \
 (cd themes/no-style-please && git reset --hard 30dd31fbc558597110f373b3ef1e0c75ea350f75)
 ```
 
