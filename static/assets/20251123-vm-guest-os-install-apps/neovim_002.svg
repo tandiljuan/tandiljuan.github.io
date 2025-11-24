@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" type="text/css"?><svg
+   aria-roledescription="flowchart-v2"
+   role="graphics-document document"
+   viewBox="4 3 551.9921875 129"
+   style="max-width: 551.9921875px;"
+   class="flowchart"
+   width="100%"
+   id="mermaid-vim-command-insert"
+   version="1.1"
+   sodipodi:docname="neovim_002.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs50" />
+  <sodipodi:namedview
+     id="namedview50"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.1458623"
+     inkscape:cx="229.52148"
+     inkscape:cy="91.63405"
+     inkscape:window-width="1920"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="mermaid-vim-command-insert" />
+  <style
+     id="style1">#mermaid-vim-command-insert{font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;font-size:16px;fill:#000000;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-vim-command-insert .edge-animation-slow{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 50s linear infinite;stroke-linecap:round;}#mermaid-vim-command-insert .edge-animation-fast{stroke-dasharray:9,5!important;stroke-dashoffset:900;animation:dash 20s linear infinite;stroke-linecap:round;}#mermaid-vim-command-insert .error-icon{fill:#552222;}#mermaid-vim-command-insert .error-text{fill:#552222;stroke:#552222;}#mermaid-vim-command-insert .edge-thickness-normal{stroke-width:1px;}#mermaid-vim-command-insert .edge-thickness-thick{stroke-width:3.5px;}#mermaid-vim-command-insert .edge-pattern-solid{stroke-dasharray:0;}#mermaid-vim-command-insert .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-vim-command-insert .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-vim-command-insert .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-vim-command-insert .marker{fill:#666;stroke:#666;}#mermaid-vim-command-insert .marker.cross{stroke:#666;}#mermaid-vim-command-insert svg{font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;font-size:16px;}#mermaid-vim-command-insert p{margin:0;}#mermaid-vim-command-insert .label{font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;color:#000000;}#mermaid-vim-command-insert .cluster-label text{fill:#333;}#mermaid-vim-command-insert .cluster-label span{color:#333;}#mermaid-vim-command-insert .cluster-label span p{background-color:transparent;}#mermaid-vim-command-insert .label text,#mermaid-vim-command-insert span{fill:#000000;color:#000000;}#mermaid-vim-command-insert .node rect,#mermaid-vim-command-insert .node circle,#mermaid-vim-command-insert .node ellipse,#mermaid-vim-command-insert .node polygon,#mermaid-vim-command-insert .node path{fill:#eee;stroke:#999;stroke-width:1px;}#mermaid-vim-command-insert .rough-node .label text,#mermaid-vim-command-insert .node .label text,#mermaid-vim-command-insert .image-shape .label,#mermaid-vim-command-insert .icon-shape .label{text-anchor:middle;}#mermaid-vim-command-insert .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-vim-command-insert .rough-node .label,#mermaid-vim-command-insert .node .label,#mermaid-vim-command-insert .image-shape .label,#mermaid-vim-command-insert .icon-shape .label{text-align:center;}#mermaid-vim-command-insert .node.clickable{cursor:pointer;}#mermaid-vim-command-insert .root .anchor path{fill:#666!important;stroke-width:0;stroke:#666;}#mermaid-vim-command-insert .arrowheadPath{fill:#333333;}#mermaid-vim-command-insert .edgePath .path{stroke:#666;stroke-width:2.0px;}#mermaid-vim-command-insert .flowchart-link{stroke:#666;fill:none;}#mermaid-vim-command-insert .edgeLabel{background-color:white;text-align:center;}#mermaid-vim-command-insert .edgeLabel p{background-color:white;}#mermaid-vim-command-insert .edgeLabel rect{opacity:0.5;background-color:white;fill:white;}#mermaid-vim-command-insert .labelBkg{background-color:rgba(255, 255, 255, 0.5);}#mermaid-vim-command-insert .cluster rect{fill:hsl(0, 0%, 98.9215686275%);stroke:#707070;stroke-width:1px;}#mermaid-vim-command-insert .cluster text{fill:#333;}#mermaid-vim-command-insert .cluster span{color:#333;}#mermaid-vim-command-insert div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;font-size:12px;background:hsl(-160, 0%, 93.3333333333%);border:1px solid #707070;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-vim-command-insert .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#000000;}#mermaid-vim-command-insert rect.text{fill:none;stroke-width:0;}#mermaid-vim-command-insert .icon-shape,#mermaid-vim-command-insert .image-shape{background-color:white;text-align:center;}#mermaid-vim-command-insert .icon-shape p,#mermaid-vim-command-insert .image-shape p{background-color:white;padding:2px;}#mermaid-vim-command-insert .icon-shape rect,#mermaid-vim-command-insert .image-shape rect{opacity:0.5;background-color:white;fill:white;}#mermaid-vim-command-insert .label-icon{display:inline-block;height:1em;overflow:visible;vertical-align:-0.125em;}#mermaid-vim-command-insert .node .label-icon path{fill:currentColor;stroke:revert;stroke-width:revert;}#mermaid-vim-command-insert :root{--mermaid-font-family:&quot;trebuchet ms&quot;,verdana,arial,sans-serif;}</style>
+  <g
+     id="g4">
+    <marker
+       orient="auto"
+       markerHeight="8"
+       markerWidth="8"
+       markerUnits="userSpaceOnUse"
+       refY="5"
+       refX="5"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="mermaid-vim-command-insert_flowchart-v2-pointEnd">
+      <path
+         style="stroke-width: 1; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 0 0 L 10 5 L 0 10 z"
+         id="path1" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="8"
+       markerWidth="8"
+       markerUnits="userSpaceOnUse"
+       refY="5"
+       refX="4.5"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="mermaid-vim-command-insert_flowchart-v2-pointStart">
+      <path
+         style="stroke-width: 1; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 0 5 L 10 10 L 10 0 z"
+         id="path2" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="11"
+       markerWidth="11"
+       markerUnits="userSpaceOnUse"
+       refY="5"
+       refX="11"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="mermaid-vim-command-insert_flowchart-v2-circleEnd">
+      <circle
+         style="stroke-width: 1; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         r="5"
+         cy="5"
+         cx="5"
+         id="circle2" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="11"
+       markerWidth="11"
+       markerUnits="userSpaceOnUse"
+       refY="5"
+       refX="-1"
+       viewBox="0 0 10 10"
+       class="marker flowchart-v2"
+       id="mermaid-vim-command-insert_flowchart-v2-circleStart">
+      <circle
+         style="stroke-width: 1; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         r="5"
+         cy="5"
+         cx="5"
+         id="circle3" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="11"
+       markerWidth="11"
+       markerUnits="userSpaceOnUse"
+       refY="5.2"
+       refX="12"
+       viewBox="0 0 11 11"
+       class="marker cross flowchart-v2"
+       id="mermaid-vim-command-insert_flowchart-v2-crossEnd">
+      <path
+         style="stroke-width: 2; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 1,1 l 9,9 M 10,1 l -9,9"
+         id="path3" />
+    </marker>
+    <marker
+       orient="auto"
+       markerHeight="11"
+       markerWidth="11"
+       markerUnits="userSpaceOnUse"
+       refY="5.2"
+       refX="-1"
+       viewBox="0 0 11 11"
+       class="marker cross flowchart-v2"
+       id="mermaid-vim-command-insert_flowchart-v2-crossStart">
+      <path
+         style="stroke-width: 2; stroke-dasharray: 1, 0;"
+         class="arrowMarkerPath"
+         d="M 1,1 l 9,9 M 10,1 l -9,9"
+         id="path4" />
+    </marker>
+  </g>
+  <g
+     class="subgraphs"
+     id="g5" />
+  <g
+     class="nodes"
+     id="g17">
+    <g
+       transform="translate(36.33203125, 80.33203125)"
+       id="flowchart-S-0"
+       class="node default">
+      <circle
+         cy="0"
+         cx="0"
+         r="24.33203125"
+         style=""
+         class="basic label-container"
+         id="circle5" />
+      <g
+         transform="translate(0, -9.5)"
+         style=""
+         class="label"
+         id="g8">
+        <rect
+           id="rect5" />
+        <g
+           id="g7">
+          <rect
+             style="stroke: none"
+             class="background"
+             id="rect6" />
+          <text
+             style=""
+             y="-10.1"
+             id="text7"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan7"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan6">shell</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       transform="translate(307.765625, 80.5)"
+       id="flowchart-C-1"
+       class="node default">
+      <rect
+         height="49"
+         width="99.140625"
+         y="-24.5"
+         x="-49.5703125"
+         ry="5"
+         rx="5"
+         style=""
+         class="basic label-container"
+         id="rect8" />
+      <g
+         transform="translate(0, -9.5)"
+         style=""
+         class="label"
+         id="g12">
+        <rect
+           id="rect9" />
+        <g
+           id="g11">
+          <rect
+             style="stroke: none"
+             class="background"
+             id="rect10" />
+          <text
+             style=""
+             y="-10.1"
+             id="text11"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan11"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan10">command</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       transform="translate(512.453125, 80.5)"
+       id="flowchart-I-4"
+       class="node default">
+      <rect
+         height="49"
+         width="71.078125"
+         y="-24.5"
+         x="-35.5390625"
+         ry="5"
+         rx="5"
+         style=""
+         class="basic label-container"
+         id="rect12" />
+      <g
+         transform="translate(0, -9.5)"
+         style=""
+         class="label"
+         id="g16">
+        <rect
+           id="rect13" />
+        <g
+           id="g15">
+          <rect
+             style="stroke: none"
+             class="background"
+             id="rect14" />
+          <text
+             style=""
+             y="-10.1"
+             id="text15"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan15"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan14">insert</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g
+     class="edges edgePaths"
+     id="g18">
+    <path
+       marker-end="url(#mermaid-vim-command-insert_flowchart-v2-pointEnd)"
+       style=""
+       class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+       id="L_S_C_0_0"
+       d="M60.664,72L254.195,72" />
+    <path
+       marker-end="url(#mermaid-vim-command-insert_flowchart-v2-pointEnd)"
+       style=""
+       class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+       id="L_C_I_0_0"
+       d="M357.336,72L472.914,72" />
+    <path
+       marker-end="url(#mermaid-vim-command-insert_flowchart-v2-pointEnd)"
+       style=""
+       class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+       id="L_I_C_0_0"
+       d="M476.914,89L474.831,89C472.747,89,468.581,89,466.026,89.362C463.471,89.724,462.528,90.448,461.695,91.281C460.862,92.114,460.138,93.057,459.776,96.029C459.414,99,459.414,104,459.052,106.971C458.69,109.943,457.966,110.886,457.133,111.719C456.3,112.552,455.357,113.276,442.456,113.638C429.555,114,404.695,114,391.794,113.638C378.893,113.276,377.95,112.552,377.117,111.719C376.284,110.886,375.56,109.943,375.198,106.971C374.836,104,374.836,99,374.474,96.029C374.112,93.057,373.388,92.114,372.555,91.281C371.722,90.448,370.779,89.724,368.891,89.362C367.003,89,364.169,89,362.753,89L361.336,89" />
+    <path
+       marker-end="url(#mermaid-vim-command-insert_flowchart-v2-pointEnd)"
+       style=""
+       class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+       id="L_C_C_0_0"
+       d="M291.242,56L291.242,53.917C291.242,51.833,291.242,47.667,291.604,45.112C291.966,42.557,292.69,41.614,293.523,40.781C294.357,39.948,295.299,39.224,299.612,38.862C303.924,38.5,311.607,38.5,315.919,38.862C320.232,39.224,321.175,39.948,322.008,40.781C322.841,41.614,323.565,42.557,323.927,44.445C324.289,46.333,324.289,49.167,324.289,50.583L324.289,52" />
+    <path
+       marker-end="url(#mermaid-vim-command-insert_flowchart-v2-pointEnd)"
+       style=""
+       class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link"
+       id="L_C_S_0_0"
+       d="M258.195,89L256.112,89C254.029,89,249.862,89,247.307,89.362C244.753,89.724,243.81,90.448,242.976,91.281C242.143,92.114,241.419,93.057,241.057,96.029C240.695,99,240.695,104,240.333,106.971C239.971,109.943,239.248,110.886,238.414,111.719C237.581,112.552,236.638,113.276,210.745,113.638C184.852,114,134.008,114,108.115,113.638C82.221,113.276,81.278,112.552,80.445,111.719C79.612,110.886,78.888,109.943,78.526,106.805C78.164,103.667,78.164,98.333,77.802,95.195C77.44,92.057,76.716,91.114,75.883,90.281C75.05,89.448,74.107,88.724,72.219,88.362C70.331,88,67.497,88,66.081,88L64.664,88" />
+  </g>
+  <g
+     class="edgeLabels"
+     id="g50"
+     transform="translate(8)">
+    <g
+       transform="translate(159.42969,71.5)"
+       class="edgeLabel"
+       id="g25">
+      <g
+         transform="translate(-47.523437,-11.5)"
+         class="label"
+         id="g24">
+        <g
+           id="g23">
+          <rect
+             height="23"
+             width="80.429062"
+             y="-1"
+             x="-4.3999395"
+             class="background"
+             id="rect18"
+             style="opacity:1;stroke-width:0.919897" />
+          <text
+             y="-10.1"
+             id="text23"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan23"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan18">[</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan19">nvim</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan20">|</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan21">vi</tspan><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan22">]</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       transform="translate(417.125,71.5)"
+       class="edgeLabel"
+       id="g30">
+      <g
+         transform="translate(-15.085938,-11.5)"
+         class="label"
+         id="g29">
+        <g
+           id="g28">
+          <rect
+             height="23"
+             width="23.190233"
+             y="-1"
+             x="-2.8727052"
+             class="background"
+             id="rect25"
+             style="opacity:1;stroke-width:0.8767" />
+          <text
+             y="-10.1"
+             id="text28"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan28"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan25">[</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan26">i</tspan><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan27">]</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       transform="translate(417.125,113.5)"
+       class="edgeLabel"
+       id="g35">
+      <g
+         transform="translate(-24.789062,-11.5)"
+         class="label"
+         id="g34">
+        <g
+           id="g33">
+          <rect
+             height="23"
+             width="42.378307"
+             y="-1"
+             x="-3.0908816"
+             class="background"
+             id="rect30"
+             style="opacity:1;stroke-width:0.924542" />
+          <text
+             y="-10.1"
+             id="text33"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan33"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan30">[</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan31">Esc</tspan><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan32">]</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       transform="translate(307.76562,23.5)"
+       class="edgeLabel"
+       id="g40">
+      <g
+         transform="translate(-21.90625,-11.5)"
+         class="label"
+         id="g39">
+        <g
+           id="g38">
+          <rect
+             height="23"
+             width="38.139915"
+             y="-1"
+             x="-3.5272341"
+             class="background"
+             id="rect35"
+             style="opacity:1;stroke-width:0.93302" />
+          <text
+             y="-10.1"
+             id="text38"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan38"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan35">[</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan36">:w</tspan><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan37">]</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       transform="translate(159.42969,113.5)"
+       class="edgeLabel"
+       id="g49">
+      <g
+         transform="translate(-63.765625,-11.5)"
+         class="label"
+         id="g48">
+        <g
+           id="g47">
+          <rect
+             height="23"
+             width="103.43351"
+             y="-1"
+             x="-5.0544682"
+             class="background"
+             id="rect40"
+             style="opacity:1;stroke-width:0.90058" />
+          <text
+             y="-10.1"
+             id="text47"><tspan
+               dy="1.1em"
+               y="-0.1em"
+               x="0"
+               class="text-outer-tspan"
+               id="tspan47"><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan40">[</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan41">:q</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan42">|</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan43">:q!</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan44">|</tspan><tspan
+                 font-weight="bold"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan45">:wq</tspan><tspan
+                 font-weight="normal"
+                 class="text-inner-tspan"
+                 font-style="normal"
+                 id="tspan46">]</tspan></tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

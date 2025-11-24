@@ -340,6 +340,15 @@ Now you can start an SSH server to access Termux from an external computer. Belo
 cat > $PREFIX/bin/sshd-custom <<HEREDOC && chmod u+x $PREFIX/bin/sshd-custom
 #!$PREFIX/bin/bash
 
+# Release the CPU before exit
+cleanup() {
+  termux-wake-unlock
+  echo "...bye!"
+}
+
+# Catch Ctrl+C signal and call 'cleanup' function
+trap cleanup SIGINT
+
 # Prevent the CPU from sleeping
 termux-wake-lock
 
@@ -618,7 +627,7 @@ ssh alpine "sudo sed -i -e 's/^GatewayPorts no/GatewayPorts yes/' -e 's/^AllowTc
 ```
 
 
-Docker
+Docker {#docker}
 ------
 
 As I said in the introduction, Termux will be limited by the device. That's why, to run Docker, you have emulated a computer and installed Alpine Linux on it. But, in its current state, it's quite uncomfortable to log in to Alpine every time you want to run a Docker command. During the setup of Alpine Linux, you exposed port **2375**, which allows a Docker client to interact with the Docker daemon.

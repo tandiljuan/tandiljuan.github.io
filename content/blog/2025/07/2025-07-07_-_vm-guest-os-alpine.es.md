@@ -332,7 +332,7 @@ ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 2222 admin
 ```
 
 
-### Instalar Docker
+### Instalar Docker {#docker}
 
 Usando el siguiente comando, vamos a instalar docker y [docker compose](https://docs.docker.com/compose/).
 

@@ -35,7 +35,8 @@
 {%- set main_class = "details" -%}
 {#- ------------------------------ PARAMETERS ------------------------------ -#}
 {%- set container_class = class | default(value="tabs") -%}
-{%- set details_name = name | default(value=main_class ~ "-" ~ nth) -%}
+{%- set name = name | default(value=main_class) -%}
+{%- set details_name = name ~ "-" ~ nth -%}
 {%- set close_open = close | default(value=false) -%}
 {%- set pat = pat | default(value="::") -%}
 {#- ---------------------------- BUILD CLASSES ----------------------------- -#}
@@ -49,7 +50,11 @@
 {#- ---------------------------- HTML TEMPLATE ----------------------------- -#}
 <div class="{{ main_class }}">
     {%- for d in details -%}
-        <details {% if details_name %}name="{{ details_name }}"{% endif %} {% if loop.first %}open{% endif %}>
+        <details
+            data-id="{{ name | slugify }}"
+            {% if details_name %}name="{{ details_name }}"{% endif %}
+            {% if loop.first %}open{% endif %}
+        >
             <summary data-id="{{ d.head | slugify }}">{{ d.head | markdown(inline=true) | safe }}</summary>
             <div>
                 {%- for i in details | slice(start=loop.index0) -%}

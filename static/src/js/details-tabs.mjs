@@ -46,16 +46,17 @@ const rrDetailsTabs = (() => {
         document.querySelectorAll(selector).forEach(matchElement => {
             matchElement.addEventListener("click", event => {
                 const eventTarget = event.target;
-                const isTab = eventTarget.matches('.tabs summary'); // Check if the clicked element is a tab summary.
+                const isTab = eventTarget.matches(selector+' summary'); // Check if the clicked element is a 'summary' tag.
 
                 if (isTab) {
+                    const detailName = eventTarget.parentElement.getAttribute("data-id");
                     const url = new URL(location);
-                    const oldTab = url.searchParams.get('detail-tab');
+                    const oldTab = url.searchParams.get(detailName);
                     const newTab = eventTarget.getAttribute("data-id");
 
                     // Update the URL and propagate only if the tab has changed.
                     if (newTab !== oldTab) {
-                        url.searchParams.set('detail-tab', newTab);
+                        url.searchParams.set(detailName, newTab);
                         history.pushState({}, "", url); // Update the URL in the browser's history.
                         propagateSelectedTab(newTab); // Dispatch the custom event to update other components.
                     }
@@ -83,10 +84,11 @@ const rrDetailsTabs = (() => {
 
         document.querySelectorAll(selector).forEach(matchElement => {
             matchElement.addEventListener("rrtabswitch", event => {
-                const tab = event.detail.current;
+                const name = event.detail.name;
+                const tab = event.detail.tab;
 
                 // Open the target detail element.
-                const targetDetail = matchElement.querySelector(`details:has(summary[data-id="${tab}"])`);
+                const targetDetail = matchElement.querySelector(`details[data-id="${name}"]:has(summary[data-id="${tab}"])`);
 
                 // Check if data-id is valid.
                 if (targetDetail) {
@@ -117,15 +119,17 @@ const rrDetailsTabs = (() => {
     /**
      * Creates a custom "rrtabswitch" event.
      *
-     * @param {string} current The ID of the tab to switch to.
+     * @param {string} name Detail name to switch to.
+     * @param {string} tab Detail tab to switch to.
      * @returns {CustomEvent} The custom event object.
      */
-    const rrTabSwitchEvent = (current) => {
+    const rrTabSwitchEvent = (name, tab) => {
         return new CustomEvent('rrtabswitch', {
             bubbles: false,
             cancelable: true,
             detail: {
-                current: current,
+                name: name,
+                tab: tab,
             },
         });
     }
@@ -136,21 +140,35 @@ const rrDetailsTabs = (() => {
      * This function ensures that all instances of the component on the page are
      * synchronized to the currently selected tab.
      *
-     * @param {string} [selectedTab] The ID of the tab to select. If not
-     * provided, it reads the `detail-tab` parameter from the URL.
+     * @param {string} [selectedDetail] Detail name to select. If not
+     * provided, it is read from the URL.
+     * @param {string} [selectedTab] Detail tab to select. If not
+     * provided, it is read from the URL.
      */
-    const propagateSelectedTab = (selectedTab) => {
+    const propagateSelectedTab = (selectedDetail, selectedTab) => {
         const selector = conf.selector;
 
-        // Determine the selected tab ID. If not provided, read it from the URL.
-        if (typeof selectedTab === 'undefined') {
+        if (
+            typeof selectedDetail === 'undefined'
+            || typeof selectedTab === 'undefined'
+        ) {
+            // If detail or tab are not provided, read them from the URL.
+            const detailNames = [];
+            document.querySelectorAll(selector+' details').forEach(matchElement => {
+                const name = matchElement.getAttribute('data-id');
+                if (!detailNames.includes(name)) {
+                    detailNames.push(name);
+                }
+            });
             const url = new URL(location);
-            selectedTab = url.searchParams.get('detail-tab');
-        }
-
-        // Dispatch the custom event if a tab is selected.
-        if (selectedTab) {
-            const rrTabSwitch = rrTabSwitchEvent(selectedTab);
+            for (const [key, value] of url.searchParams.entries()) {
+                if (detailNames.includes(key)) {
+                    propagateSelectedTab(key, value);
+                }
+            }
+        } else {
+            // Dispatch the custom event if a tab is selected.
+            const rrTabSwitch = rrTabSwitchEvent(selectedDetail, selectedTab);
             document.querySelectorAll(selector).forEach(matchElement => {
                 matchElement.dispatchEvent(rrTabSwitch);
             });
